@@ -35,8 +35,9 @@ app.configure('production', function(){
 // Routes
 
 app.get('/listUser', function (req, res) {
+  var userId = req.query.userId;
   // This line here is responsible for calling the next block of code
-	getUser(function(data) {
+	getUser(userId, function(data) {
 		res.setHeader('Content-Type', 'application/json');
   		res.json( data );
 	});
@@ -53,7 +54,7 @@ app.get('/listConvo', function (req, res) {
 app.get('/createConvo', function (req, res) {
 	var hohUserId = req.query.hohUserId;
 	var interpreterUserId = req.query.interpreterUserId;
-	
+
 	createConvo(hohUserId, interpreterUserId, function(data) {
 		res.setHeader('Content-Type', 'application/json');
 		res.json( data );
@@ -63,7 +64,7 @@ app.get('/createConvo', function (req, res) {
 app.get('/pingConvoHOH', function (req, res) {
 	var hohUserId = req.query.hohUserId;
 	var ConvoId = req.query.ConvoId;
-	
+
 	updateConvoHOH(hohUserId, ConvoId, function(data) {
 		res.setHeader('Content-Type', 'application/json');
 		res.json( data );
@@ -73,7 +74,7 @@ app.get('/pingConvoHOH', function (req, res) {
 app.get('/pingConvoInterpreter', function (req, res) {
 	var interpreterUserId = req.query.interpreterUserId;
 	var ConvoId = req.query.ConvoId;
-	
+
 	updateConvoInterpreter(interpreterUserId, ConvoId, function(data) {
 		res.setHeader('Content-Type', 'application/json');
 		res.json( data );
@@ -82,7 +83,7 @@ app.get('/pingConvoInterpreter', function (req, res) {
 
 app.get('/endConvo', function (req, res) {
 	var ConvoId = req.query.ConvoId;
-	
+
 	endConvo(ConvoId, function(data) {
 		res.setHeader('Content-Type', 'application/json');
 		res.json( data );
@@ -122,22 +123,22 @@ function getConnection() {
   		if(err) throw err;
 
   		// Tim's code
-  		var objs = { 
-			people: [] 
+  		var objs = {
+			people: []
 		};
   		for (var i = 0; i < rows.length; i++) {
       			objs.people.push({ id: rows[i].user_id });
   		}
   		var result = JSON.stringify(objs);
   		console.log(result);
-  	
+
 		// parse the JSON back into readable data
   		var json = JSON.parse(result);
   		console.log(json.people[0].name);
   		//console.log('Data received from Db:\n');
   		//console.log(rows);
 	});
-	
+
 	con.end(function(err) {
   	// The connection is terminated gracefully
   	// Ensures all previously enqueued queries are still
@@ -148,7 +149,7 @@ function getConnection() {
 
 //Update the convo to be over according to the db
 function endConvo(ConvoId, callback)
-{ 
+{
 	if(ConvoId == undefined)
 	{
 		callback({ "success": false, "message": "ConvoId was not supplied, but is required" });
@@ -161,7 +162,7 @@ function endConvo(ConvoId, callback)
 
 	//Check your input is valid with the DB
 	con.query('SELECT COUNT(*) AS isGood FROM convo WHERE convo_id = ? ', ConvoId , function(err,rows){
-		
+
 		//Check interpreter user id is valid
 		if(rows[0].isGood == 0)
 		{
@@ -186,7 +187,7 @@ function endConvo(ConvoId, callback)
 
 //Update the last ping time for an convo with the interpreter User
 function updateConvoInterpreter(interpreterUserId, ConvoId, callback)
-{ 
+{
 	//Check your input is not null
 	if(interpreterUserId == undefined)
 	{
@@ -213,7 +214,7 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback)
 			return;
 		} else {
 			con.query('SELECT COUNT(*) AS isGood FROM convo WHERE convo_id = ? AND interpreter_user_id = ?', [ConvoId, interpreterUserId] , function(err,rows){
-							
+
 				//Check interpreter user id is valid
 				if(rows[0].isGood == 0)
 				{
@@ -240,7 +241,7 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback)
 
 //Update the last ping time for an convo with the HOH User
 function updateConvoHOH(hohUserId, ConvoId, callback)
-{ 
+{
 	//Check your input is not null
 	if(hohUserId == undefined)
 	{
@@ -267,7 +268,7 @@ function updateConvoHOH(hohUserId, ConvoId, callback)
 			return;
 		} else {
 			con.query('SELECT COUNT(*) AS isGood FROM convo WHERE convo_id = ? AND hoh_user_id = ?', [ConvoId, hohUserId] , function(err,rows){
-							
+
 				//Check interpreter user id is valid
 				if(rows[0].isGood == 0)
 				{
@@ -303,11 +304,11 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 		callback({ "success": false, "message": "interpreterUserId was not supplied, but is required" });
 		return;
 	}
-	
+
 	//Get and start SQL Connection
 	var con = getConnection();
 	con.connect();
-	
+
 	//Check your input is valid with the DB
 	con.query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 0',hohUserId ,function(err,rows){
 
@@ -319,7 +320,7 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 			return;
 		} else {
 			con.query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 1',interpreterUserId ,function(err,rows){
-				
+
 				//Check interpreter user id is valid
 				if(rows[0].isGood == 0)
 				{
@@ -328,7 +329,7 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 					return;
 				} else {
 					//Insert in the new convo
-					var convo = { 
+					var convo = {
 						start_time: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
 						hoh_user_id: hohUserId,
 						interpreter_user_id: interpreterUserId,
@@ -355,22 +356,22 @@ function getAllConvos(callback) {
 	con.query('SELECT * FROM convo',function(err,rows){
 		  if (err) throw err;
 
-		
+
 		con.end();
 		console.log("to Preform Callback");
 		callback(rows);
 	});
 }
 
-function getUser(callback) {
+function getUser(userId, callback) {
 	console.log("getUser Invoied");
 	var result;
 	var con = getConnection();
 	con.connect();
-	con.query('SELECT * FROM user',function(err,rows){
+	con.query('SELECT * FROM user WHERE user_id = ?', userId, function(err,rows){
 		  if (err) throw err;
 
-		
+
 		con.end();
 		console.log("to Preform Callback");
 		callback(rows);
