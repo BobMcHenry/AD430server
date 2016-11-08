@@ -17,13 +17,12 @@ router.get('/', function (req, res) {
 
 // List all convos
 function listConvos(callback) {
-    console.log("listConvos Involed");
+    console.log("listConvos Invoked");
     var result;
     db.connect(db.MODE_DEVELOPMENT);
     db.get().query('SELECT * FROM convo', function(err,rows) {
         if (err) throw err;
 
-        console.log("Preforming listConvos callback");
         callback(rows);
     });
 }

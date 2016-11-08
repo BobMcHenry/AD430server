@@ -26,6 +26,8 @@ app.use('/endConvo', endConvo);
 
 // Listen for requests
 var port = 8081;
-app.listen(port, function(){
+app.listen(port, function() {
   console.log("Express server listening on port " + port);
 });
+
+module.exports = app;

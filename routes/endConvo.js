@@ -18,10 +18,9 @@ router.get('/', function (req, res) {
 });
 
 // Update the convo to be over according to the db
-function endConvo(ConvoId, callback)
-{
-	if(ConvoId == undefined)
-	{
+function endConvo(ConvoId, callback) {
+    console.log("endConvo Invoked");
+	if(ConvoId == undefined) {
 		callback({ "success": false, "message": "ConvoId was not supplied, but is required" });
 		return;
 	}
@@ -33,8 +32,7 @@ function endConvo(ConvoId, callback)
 	db.get().query('SELECT COUNT(*) AS isGood FROM convo WHERE convo_id = ? ', ConvoId , function(err,rows){
 
 		//Check interpreter user id is valid
-		if(rows[0].isGood == 0)
-		{
+		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given ConvoId cannot be found." });
 			return;
 		} else {

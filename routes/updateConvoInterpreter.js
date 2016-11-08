@@ -19,16 +19,15 @@ router.get('/', function (req, res) {
 });
 
 // Update the last ping time for an convo with the interpreter User
-function updateConvoInterpreter(interpreterUserId, ConvoId, callback)
-{
+function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
+	console.log("updateConvoInterpreter Invoked");
+
 	//Check your input is not null
-	if(interpreterUserId == undefined)
-	{
+	if(interpreterUserId == undefined) {
 		callback({ "success": false, "message": "interpreterUserId was not supplied, but is required" });
 		return;
 	}
-	if(ConvoId == undefined)
-	{
+	if(ConvoId == undefined) {
 		callback({ "success": false, "message": "ConvoId was not supplied, but is required" });
 		return;
 	}
@@ -39,16 +38,14 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback)
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 1', interpreterUserId, function(err,rows){
 		//Check interpreterUserId user id is valid
-		if(rows[0].isGood == 0)
-		{
+		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given interpreterUserId cannot be found or is not a interpreter user." });
 			return;
 		} else {
 			db.get().query('SELECT COUNT(*) AS isGood FROM convo WHERE convo_id = ? AND interpreter_user_id = ?', [ConvoId, interpreterUserId] , function(err,rows){
 
 				//Check interpreter user id is valid
-				if(rows[0].isGood == 0)
-				{
+				if(rows[0].isGood == 0) {
 					callback({ "success": false, "message": "Given ConvoId cannot be found or did not belong to the given interpreter user." });
 					return;
 				} else {

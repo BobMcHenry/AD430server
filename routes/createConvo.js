@@ -21,6 +21,8 @@ router.get('/', function (req, res) {
 
 // Creates a new convo and checks the input is valid
 function createConvo(hohUserId, interpreterUserId, callback) {
+	console.log("createConvo Invoked");
+
 	// Check your input is not null
 	if(hohUserId == undefined) {
 		callback({ "success": false, "message": "hohUserId was not supplied, but is required" });
