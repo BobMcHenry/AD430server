@@ -1,10 +1,11 @@
 
 // Module dependencies
 var express = require('express');
-var router = express.Router();
 
 // Get database access
 var db = require('../db');
+
+var router = express.Router();
 
 // GET all convos and list them
 router.get('/', function (req, res) {
