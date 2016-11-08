@@ -1,8 +1,6 @@
 
 // Module dependencies
-var express = require('express'),
-    mysql = require('mysql'),
-    moment = require('moment'); // Required for arg parsing
+var express = require('express'); // Required for arg parsing
 
 var app = express();
 
