@@ -335,7 +335,7 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 						last_updated_hoh: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
 						last_updated_interpreter: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
 						};
-					con.query('UPDATE convo SET  INTO convo SET ?', convo, function(err,res){
+					con.query('INSERT INTO convo SET ?', convo, function(err,res){
 						console.log(err);
 						console.log(res);
 						callback({ "success": true, "convo_id": res.insertId });
