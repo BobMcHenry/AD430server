@@ -1,9 +1,10 @@
 
+// Module dependencies
 var mysql = require('mysql');
 
+// Databases
 var PRODUCTION_DB = 'ad430_db',
     DEVELOPMENT_DB = 'ad430_db'; // can later be a test db
-
 exports.MODE_PRODUCTION = 'mode_production';
 exports.MODE_DEVELOPMENT = 'mode_development';
 
@@ -12,6 +13,7 @@ var state = {
     mode: null
 };
 
+// Database connect function
 exports.connect = function(mode) {
     state.pool = mysql.createPool({
         host: 'localhost',
@@ -24,6 +26,7 @@ exports.connect = function(mode) {
     state.mode = mode;
 }
 
+// This function returns a database connection
 exports.get = function() {
   return state.pool;
 }
