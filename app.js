@@ -7,9 +7,6 @@
 var express = require('express')
   , routes = require('./routes');
 
-//Required for arg parsing
-var moment = require('moment')
-
   var mysql = require("mysql");
 
 var app = module.exports = express.createServer();
@@ -37,10 +34,13 @@ app.configure('production', function(){
 
 // Routes
 
-app.get('/', function (req, res) {
+app.get('/listUser', function (req, res) {
   // This line here is responsible for calling the next block of code
-  res.json(queryDB());
-});
+	getUser(function(data) {
+		res.setHeader('Content-Type', 'application/json');
+  		res.json( data );
+	});
+})
 
 app.get('/listConvo', function (req, res) {
 	getAllConvos(function(data) {
@@ -107,7 +107,7 @@ function getConnection() {
 
 
 // Austin's code
-function queryDB() {
+/*function getUser(callback) {
 	var con = getConnection();
 
 	con.connect(function(err){
@@ -144,7 +144,7 @@ function queryDB() {
   	// before sending a COM_QUIT packet to the MySQL server.
 	});
 	return json;
-}
+}*/
 
 //Update the convo to be over according to the db
 function endConvo(ConvoId, callback)
@@ -353,6 +353,21 @@ function getAllConvos(callback) {
 	var con = getConnection();
 	con.connect();
 	con.query('SELECT * FROM convo',function(err,rows){
+		  if (err) throw err;
+
+		
+		con.end();
+		console.log("to Preform Callback");
+		callback(rows);
+	});
+}
+
+function getUser(callback) {
+	console.log("getUser Invoied");
+	var result;
+	var con = getConnection();
+	con.connect();
+	con.query('SELECT * FROM user',function(err,rows){
 		  if (err) throw err;
 
 		
