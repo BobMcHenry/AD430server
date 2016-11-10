@@ -10,13 +10,15 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 
 // Routes
-var listConvos = require('./routes/listConvos'),
+var getUser = require('./routes/getUser'),
+    getConvos = require('./routes/getConvos'),
     createConvo = require('./routes/createConvo'),
     updateConvoHOH = require('./routes/updateConvoHOH');
     updateConvoInterpreter = require('./routes/updateConvoInterpreter'),
     endConvo = require('./routes/endConvo');
 
-app.use('/listConvos', listConvos);
+app.use('/getUser', getUser);
+app.use('/getConvos', getConvos);
 app.use('/createConvo', createConvo);
 app.use('/updateConvoHOH', updateConvoHOH);
 app.use('/updateConvoInterpreter', updateConvoInterpreter);

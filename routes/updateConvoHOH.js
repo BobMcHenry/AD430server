@@ -21,7 +21,7 @@ router.get('/', function (req, res) {
 
 // Update the last ping time for an convo with the HOH User
 function updateConvoHOH(hohUserId, ConvoId, callback) {
-    console.log("updateConvoHOH Invoked");
+    console.log("Invoked: updateConvoHOH");
 
 	//Check your input is not null
 	if(hohUserId == undefined) {
@@ -54,8 +54,6 @@ function updateConvoHOH(hohUserId, ConvoId, callback) {
 						if(err) {
 							callback({ "success": false, "message": "something went wrong in the db." });
 						}
-						console.log(err);
-						console.log(res);
 						callback({ "success": true, "convo_id": ConvoId });
 						return;
 					});
@@ -63,6 +61,8 @@ function updateConvoHOH(hohUserId, ConvoId, callback) {
 			});
 		}
 	});
+
+    console.log("Finished: updateConvoHOH");
 }
 
 module.exports = router;

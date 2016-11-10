@@ -9,15 +9,16 @@ var router = express.Router();
 
 // GET all convos and list them
 router.get('/', function (req, res) {
-	listConvos(function(data) {
+	getConvos(function(data) {
 		res.setHeader('Content-Type', 'application/json');
 		res.json( data );
 	});
 });
 
 // List all convos
-function listConvos(callback) {
-    console.log("listConvos Invoked");
+function getConvos(callback) {
+    console.log("Invoked: getConvos");
+
     var result;
     db.connect(db.MODE_DEVELOPMENT);
     db.get().query('SELECT * FROM convo', function(err,rows) {
@@ -25,6 +26,8 @@ function listConvos(callback) {
 
         callback(rows);
     });
+
+	console.log("Finished: getConvos");
 }
 
 module.exports = router;

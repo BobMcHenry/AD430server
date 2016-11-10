@@ -19,7 +19,8 @@ router.get('/', function (req, res) {
 
 // Update the convo to be over according to the db
 function endConvo(ConvoId, callback) {
-    console.log("endConvo Invoked");
+    console.log("Invoked: endConvo");
+
 	if(ConvoId == undefined) {
 		callback({ "success": false, "message": "ConvoId was not supplied, but is required" });
 		return;
@@ -40,13 +41,13 @@ function endConvo(ConvoId, callback) {
 			if(err) {
 				callback({ "success": false, "message": "something went wrong in the db." });
 			}
-				console.log(err);
-				console.log(res);
 				callback({ "success": true, "convo_id": ConvoId });
 				return;
 			});
 		}
 	});
+
+    console.log("Finished: endConvo");
 }
 
 module.exports = router;

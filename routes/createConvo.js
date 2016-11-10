@@ -21,7 +21,7 @@ router.get('/', function (req, res) {
 
 // Creates a new convo and checks the input is valid
 function createConvo(hohUserId, interpreterUserId, callback) {
-	console.log("createConvo Invoked");
+	console.log("Invoked: createConvo");
 
 	// Check your input is not null
 	if(hohUserId == undefined) {
@@ -60,8 +60,6 @@ function createConvo(hohUserId, interpreterUserId, callback) {
     						last_updated_interpreter: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
 						};
 					db.get().query('INSERT INTO convo SET ?', convo, function(err,res) {
-						console.log(err);
-						console.log(res);
 						callback({ "success": true, "convo_id": res.insertId });
 						return;
 					});
@@ -69,6 +67,8 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 			});
 		}
 	});
+
+	console.log("Finished: createConvo");
 }
 
 module.exports = router;

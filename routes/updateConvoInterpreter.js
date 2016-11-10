@@ -20,7 +20,7 @@ router.get('/', function (req, res) {
 
 // Update the last ping time for an convo with the interpreter User
 function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
-	console.log("updateConvoInterpreter Invoked");
+	console.log("Invoked: updateConvoInterpreter");
 
 	//Check your input is not null
 	if(interpreterUserId == undefined) {
@@ -53,8 +53,6 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
 						if(err) {
 							callback({ "success": false, "message": "something went wrong in the db." });
 						}
-						console.log(err);
-						console.log(res);
 						callback({ "success": true, "convo_id": ConvoId });
 						return;
 					});
@@ -62,6 +60,8 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
 			});
 		}
 	});
+
+	console.log("Finished: updateConvoInterpreter");
 }
 
 
