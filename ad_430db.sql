@@ -12,7 +12,7 @@ CREATE TABLE user
     ok_to_chat					BIT				NOT NULL,
     ok_to_show_location			BIT				NOT NULL,
     last_known_location_lat		DECIMAL(7,4)	NULL,
-    last_knonw_location_long	DECIMAL(7,4)	NULL,
+    last_known_location_long	DECIMAL(7,4)	NULL,
     last_location_update		DATETIME		NULL
 );
 CREATE INDEX ind_user_microsft_api_info ON user(microsft_api_info);
@@ -67,10 +67,10 @@ CREATE TABLE convo_rating
 		REFERENCES convo (convo_id)
 );
 
-CREATE VIEW intrepreter_ratings AS  
-SELECT u.user_id, 
-	AVG(cr.friendliness) AS avg_friendliness, 
-    AVG(cr.asl_skill) AS avg_asl_skill, 
+CREATE VIEW intrepreter_ratings AS
+SELECT u.user_id,
+	AVG(cr.friendliness) AS avg_friendliness,
+    AVG(cr.asl_skill) AS avg_asl_skill,
     AVG(cr.translate_speed) AS avg_translate_speed,
     SUM(ISNULL(ur.blocking_user_id)) as total_complaint_count,
     SUM(was_reported) as total_report_count
@@ -83,6 +83,3 @@ LEFT JOIN user_report ur
 ON ur.blocking_user_id = u.user_id
 WHERE u.is_interpreter
 GROUP BY u.user_id;
-
-
-

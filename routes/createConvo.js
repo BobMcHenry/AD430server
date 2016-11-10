@@ -8,7 +8,7 @@ var db = require('../db');
 
 var router = express.Router();
 
-// GET all convos and list them
+// Set up the route
 router.get('/', function (req, res) {
 	var hohUserId = req.query.hohUserId;
 	var interpreterUserId = req.query.interpreterUserId;
@@ -19,7 +19,7 @@ router.get('/', function (req, res) {
 	});
 });
 
-// Creates a new convo and checks the input is valid
+// Creates a new convo using the given ids after checking the input is valid
 function createConvo(hohUserId, interpreterUserId, callback) {
 	console.log("Invoked: createConvo");
 

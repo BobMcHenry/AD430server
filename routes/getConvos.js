@@ -7,7 +7,7 @@ var db = require('../db');
 
 var router = express.Router();
 
-// GET all convos and list them
+// Set up the route
 router.get('/', function (req, res) {
 	getConvos(function(data) {
 		res.setHeader('Content-Type', 'application/json');
@@ -15,7 +15,7 @@ router.get('/', function (req, res) {
 	});
 });
 
-// List all convos
+// Get and list all convos
 function getConvos(callback) {
     console.log("Invoked: getConvos");
 

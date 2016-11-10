@@ -10,19 +10,16 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname + '/public'));
 
 // Routes
-var getUser = require('./routes/getUser'),
-    getConvos = require('./routes/getConvos'),
-    createConvo = require('./routes/createConvo'),
-    updateConvoHOH = require('./routes/updateConvoHOH');
-    updateConvoInterpreter = require('./routes/updateConvoInterpreter'),
-    endConvo = require('./routes/endConvo');
+// User related
+app.use('/getUser', require('./routes/getUser'));
+app.use('/updateUserLocation', require('./routes/updateUserLocation'));
 
-app.use('/getUser', getUser);
-app.use('/getConvos', getConvos);
-app.use('/createConvo', createConvo);
-app.use('/updateConvoHOH', updateConvoHOH);
-app.use('/updateConvoInterpreter', updateConvoInterpreter);
-app.use('/endConvo', endConvo);
+// Convo related
+app.use('/getConvos', require('./routes/getConvos'));
+app.use('/createConvo', require('./routes/createConvo'));
+app.use('/endConvo', require('./routes/endConvo'));
+app.use('/updateConvoHOH', require('./routes/updateConvoHOH'));
+app.use('/updateConvoInterpreter', require('./routes/updateConvoInterpreter'));
 
 // Listen for requests
 var port = 8081;

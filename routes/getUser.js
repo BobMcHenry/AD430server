@@ -7,7 +7,7 @@ var db = require('../db');
 
 var router = express.Router();
 
-// GET all convos and list them
+// Set up the route
 router.get('/', function (req, res) {
     var userId = req.query.userId;
 
@@ -17,11 +17,20 @@ router.get('/', function (req, res) {
 	});
 });
 
+// Get a user with the given id
 function getUser(userId, callback) {
 	console.log("Invoked: getUser");
 
-	var result;
+    // Check that input is not null
+    if(userId == undefined) {
+		callback({ "success": false, "message": "userId not supplied, but required" });
+		return;
+	}
+
+    // Connect to the database
     db.connect(db.MODE_DEVELOPMENT);
+
+	var result;
 	db.get().query('SELECT * FROM user WHERE user_id = ?', userId, function(err,rows) {
         if (err) throw err;
 

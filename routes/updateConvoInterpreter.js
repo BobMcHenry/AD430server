@@ -7,7 +7,7 @@ var db = require('../db');
 
 var router = express.Router();
 
-// GET all convos and list them
+// Set up the route
 router.get('/', function (req, res) {
 	var interpreterUserId = req.query.interpreterUserId;
 	var ConvoId = req.query.ConvoId;
@@ -18,7 +18,7 @@ router.get('/', function (req, res) {
 	});
 });
 
-// Update the last ping time for an convo with the interpreter User
+// Update the last Interpreter user ping time for a convo with the given id
 function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
 	console.log("Invoked: updateConvoInterpreter");
 
@@ -63,6 +63,5 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
 
 	console.log("Finished: updateConvoInterpreter");
 }
-
 
 module.exports = router;

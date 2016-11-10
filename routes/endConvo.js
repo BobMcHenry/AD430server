@@ -7,7 +7,7 @@ var db = require('../db');
 
 var router = express.Router();
 
-// GET all convos and list them
+// Set up the route
 router.get('/', function (req, res) {
     var ConvoId = req.query.ConvoId;
 
@@ -17,7 +17,7 @@ router.get('/', function (req, res) {
 	});
 });
 
-// Update the convo to be over according to the db
+// End the convo with the given id by setting an end_time in the db
 function endConvo(ConvoId, callback) {
     console.log("Invoked: endConvo");
 

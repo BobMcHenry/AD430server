@@ -8,7 +8,7 @@ var db = require('../db');
 
 var router = express.Router();
 
-// GET all convos and list them
+// Set up the route
 router.get('/', function (req, res) {
     var hohUserId = req.query.hohUserId;
 	var ConvoId = req.query.ConvoId;
@@ -19,7 +19,7 @@ router.get('/', function (req, res) {
 	});
 });
 
-// Update the last ping time for an convo with the HOH User
+// Update the last HOH user ping time for a convo with the given id
 function updateConvoHOH(hohUserId, ConvoId, callback) {
     console.log("Invoked: updateConvoHOH");
 
