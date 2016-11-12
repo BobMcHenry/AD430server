@@ -29,9 +29,13 @@ function getUser(userId, callback) {
 
     // Connect to the database
     db.connect(db.MODE_DEVELOPMENT);
+    var query;
 
-	var result;
-	db.get().query('SELECT * FROM user WHERE user_id = ?', userId, function(err,rows) {
+    // Get all user data
+    query = `SELECT * FROM user WHERE user_id = ?`;
+
+    // Get database connection and run query
+	db.get().query(query, userId, function(err, rows) {
         if (err) throw err;
 
 		callback(rows);

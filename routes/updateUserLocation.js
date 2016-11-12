@@ -34,15 +34,23 @@ function updateUserLocation(userId, userLocLat, userLocLong, callback) {
 
 	// Connect to the database
     db.connect(db.MODE_DEVELOPMENT);
+	var query;
 
 	// Check that userId is valid
-	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?', userId, function(err,rows) {
+	query = `SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?`;
+
+	// Get database connection and run query
+	db.get().query(query, userId, function(err,rows) {
 		if (rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 			return;
 		} else {
 			// Update user location (lat, long) and update time for the given id
-			db.get().query('UPDATE user SET last_known_location_lat = ?, last_known_location_long = ?, last_location_update = NOW() WHERE user_id = ?', [userLocLat, userLocLong, userId], function(err,res) {
+			query = `UPDATE user SET last_known_location_lat = ?, last_known_location_long = ?, last_location_update = NOW()
+					WHERE user_id = ?`;
+
+			// Get database connection and run query
+			db.get().query(query, [userLocLat, userLocLong, userId], function(err,res) {
 				if(err) throw err;
 
 				callback({ "success": true, "userId": userId });

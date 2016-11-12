@@ -19,9 +19,15 @@ router.get('/', function (req, res) {
 function getConvos(callback) {
     console.log("Invoked: getConvos");
 
-    var result;
+	// Connect to the database
     db.connect(db.MODE_DEVELOPMENT);
-    db.get().query('SELECT * FROM convo', function(err,rows) {
+	var query;
+
+	// Get all convos
+	query = `SELECT * FROM convo`;
+
+	// Get database connection and run query
+    db.get().query(query, function(err, rows) {
         if (err) throw err;
 
         callback(rows);
