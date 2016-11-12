@@ -2,8 +2,8 @@
 There are several different requests which may be made of the server to return json data.
 
 createConvo is used to make a new record in the DB for a conversation. It accepts two arguments, the ID of the hard-of-hearing
-user (hohUserId), and the ID of the interpreter(interpreterUserId). NOTE: DO NOT PASS AN ARGUMENT TO interpreterUserId Example:
-http://54.69.18.19/createConvo?hohUserId=1
+user (hohUserId), and the ID of the interpreter(interpreterUserId).
+http://54.69.18.19/createConvo?hohUserId=1&interpreterUserId=5
 
 listConvo returns a list of all of the conversation records. Example: http://54.69.18.19/listConvo
 
