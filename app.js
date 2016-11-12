@@ -18,6 +18,8 @@ require(path.resolve( __dirname, "./convo_functions/updateConvoInterpreter.js" )
 require(path.resolve( __dirname, "./convo_functions/updateConvoHOH.js" ))();
 require(path.resolve( __dirname, "./convo_functions/createConvo.js" ))();
 require(path.resolve( __dirname, "./user_functions/getUser.js" ))();
+require(path.resolve( __dirname, "./user_functions/getPassword.js" ))();
+require(path.resolve( __dirname, "./user_functions/setPassword.js" ))();
 
 
 
@@ -49,6 +51,25 @@ app.get('/listUser', function (req, res) {
   var userId = req.query.userId;
   // This line here is responsible for calling the next block of code
 	getUser(userId, function(data) {
+		res.setHeader('Content-Type', 'application/json');
+  		res.json( data );
+	});
+})
+
+app.get('/getPassword', function (req, res) {
+	var userId = req.query.userId;
+	// This line here is responsible for calling the next block of code
+	getPassword(userId, function(data) {
+		res.setHeader('Content-Type', 'application/json');
+  		res.json( data );
+	});
+})
+
+app.get('/setPassword', function (req, res) {
+	var userId = req.query.userId;
+	var newPassword = req.query.newPassword;
+	// This line here is responsible for calling the next block of code
+	setPassword(userId, newPassword, function(data) {
 		res.setHeader('Content-Type', 'application/json');
   		res.json( data );
 	});

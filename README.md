@@ -18,3 +18,9 @@ Example: http://54.69.18.19/endConvo?ConvoId=9
 
 listUser returns the data about a particular user. It accepts a single argument, the ID of the user (userId).
 Example: http://54.69.18.19/listUser?userId=2
+
+getPassword gets the current password for a particular user. It accepts a single argument, the ID of the user (userId).
+Example: http://54.69.18.19/getPassword?userId=2
+
+setPassword sets the current password for a particular user. It accepts a two arguments, the ID of the user (userId), and the new password (newPassword)
+Example: http://54.69.18.19/getPassword?userId=2&newPassword=hashedpasswordtemp
