@@ -2,16 +2,19 @@
 /**
  * Module dependencies.
  */
- // Grant's code
-// Here sits the code to return data when a call is made to the endpoint
 var express = require('express')
   , routes = require('./routes');
+var mysql = require("mysql"); //Requited for DB
+var moment = require('moment'); //Required for Arg Parsing4
+var path = require('path'); //Required for pathing to add extra files
 
-var mysql = require("mysql");
-  
-//Required for arg parsing
-var moment = require('moment')
 
+/**
+ * Additional Files 
+ */
+require(path.resolve( __dirname, "./database.js" ))();
+
+ 
 var app = module.exports = express.createServer();
 
 var testArray = ["Hello Friend"];
@@ -96,59 +99,6 @@ app.get('/endConvo', function (req, res) {
 app.listen(80, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 });
-
-
-//Replace with relevant creds
-function getConnection() {
-		var con = mysql.createConnection({
-  		host: "localhost",
-  		user: "root",
-  		password: "root",
-  		database: "ad430_db"
-	});
-	return con;
-}
-
-
-// Austin's code
-/*function getUser(callback) {
-	var con = getConnection();
-
-	con.connect(function(err){
-  		if(err){
-    			console.log('Error connecting to Db');
-    			return;
-  		}
-  		console.log('Connection established');
-	});
-
-	con.query('SELECT * FROM user', function(err,rows){
-  		if(err) throw err;
-
-  		// Tim's code
-  		var objs = {
-			people: []
-		};
-  		for (var i = 0; i < rows.length; i++) {
-      			objs.people.push({ id: rows[i].user_id });
-  		}
-  		var result = JSON.stringify(objs);
-  		console.log(result);
-
-		// parse the JSON back into readable data
-  		var json = JSON.parse(result);
-  		console.log(json.people[0].name);
-  		//console.log('Data received from Db:\n');
-  		//console.log(rows);
-	});
-
-	con.end(function(err) {
-  	// The connection is terminated gracefully
-  	// Ensures all previously enqueued queries are still
-  	// before sending a COM_QUIT packet to the MySQL server.
-	});
-	return json;
-}*/
 
 //Update the convo to be over according to the db
 function endConvo(ConvoId, callback)
