@@ -7,7 +7,10 @@
 var express = require('express')
   , routes = require('./routes');
 
-  var mysql = require("mysql");
+var mysql = require("mysql");
+  
+//Required for arg parsing
+var moment = require('moment')
 
 var app = module.exports = express.createServer();
 
