@@ -13,6 +13,7 @@ var path = require('path'); //Required for pathing to add extra files
  * Additional Files 
  */
 require(path.resolve( __dirname, "./database.js" ))();
+require(path.resolve( __dirname, "./convo_functions/listConvo.js" ))();
 
  
 var app = module.exports = express.createServer();
@@ -301,20 +302,7 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 	});
 }
 
-function getAllConvos(callback) {
-	console.log("getAllConvos Invoied");
-	var result;
-	var con = getConnection();
-	con.connect();
-	con.query('SELECT * FROM convo',function(err,rows){
-		  if (err) throw err;
 
-
-		con.end();
-		console.log("to Preform Callback");
-		callback(rows);
-	});
-}
 
 function getUser(userId, callback) {
 	console.log("getUser Invoied");
