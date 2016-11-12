@@ -13,6 +13,7 @@ app.use(express.static(__dirname + '/public'));
 // User related
 app.use('/getUser', require('./routes/getUser'));
 app.use('/updateUserLocation', require('./routes/updateUserLocation'));
+app.use('/setInterpreterStatus', require('./routes/setInterpreterStatus'));
 
 // Convo related
 app.use('/getConvos', require('./routes/getConvos'));
