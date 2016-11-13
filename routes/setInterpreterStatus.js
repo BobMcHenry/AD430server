@@ -35,22 +35,20 @@ function setInterpreterStatus(userId, status, callback) {
 	db.connect(db.MODE_DEVELOPMENT);
 
 	//Check your input is valid with the DB
-	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 1', userId, function(err,rows){
+	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?', userId, function(err,rows){
 		//Check interpreterUserId user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 			return;
 		} else {
-			db.get().query('UPDATE user SET is_interpreter = ? WHERE convo_id = ?', status, userId function(err,res){
-				if(err) {
-					callback({ "success": false, "message": "something went wrong in the db." });
-				}
-				callback({ "success": true, "is_interpreter": status });
-				return;
+				db.get().query('UPDATE user SET is_interpreter = ? WHERE user_id = ?', [status, userId], function(err,res){
+					if(err) {
+						callback({ "success": false, "message": "something went wrong in the db." });
+					}
+					callback({ "success": true, "is_interpreter": status });
+					return;
+				});
 			}
-		}
-	});
-	}
 	});
 
 	console.log("Finished: setInterpreterStatus");
