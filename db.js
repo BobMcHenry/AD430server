@@ -18,9 +18,10 @@ exports.connect = function(mode) {
     state.pool = mysql.createPool({
         host: 'localhost',
         user: 'root',
-        // password: 'root',
-        password: '123e123e',
-        database: mode === exports.MODE_PRODUCTION ? PRODUCTION_DB : DEVELOPMENT_DB
+        password: 'root',
+        //password: '123e123e',
+        database: mode === exports.MODE_PRODUCTION ? PRODUCTION_DB : DEVELOPMENT_DB,
+		socketPath: '/var/run/mysqld/mysqld.sock'
     });
 
     state.mode = mode;

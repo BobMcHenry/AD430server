@@ -14,6 +14,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/getUser', require('./routes/getUser'));
 app.use('/getUserLocation', require('./routes/getUserLocation'));
 app.use('/updateUserLocation', require('./routes/updateUserLocation'));
+app.use('/setInterpreterStatus', require('./routes/setInterpreterStatus'));
 
 // Convo related
 app.use('/getConvos', require('./routes/getConvos'));
