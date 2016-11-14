@@ -41,7 +41,8 @@ function setInterpreterStatus(userId, status, callback) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 			return;
 		} else {
-				db.get().query('UPDATE user SET is_interpreter = ? WHERE user_id = ?', [status, userId], function(err,res){
+				console.log("status: " + status);
+				db.get().query('UPDATE user SET is_interpreter = ? + 0 WHERE user_id = ?', [status, userId], function(err,res){
 					if(err) {
 						callback({ "success": false, "message": "something went wrong in the db." });
 					}
