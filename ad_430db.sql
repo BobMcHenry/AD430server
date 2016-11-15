@@ -13,7 +13,11 @@ CREATE TABLE user
     ok_to_show_location			BIT				NOT NULL,
     last_known_location_lat		DECIMAL(7,4)	NULL,
 <<<<<<< HEAD
+<<<<<<< HEAD
     last_knonw_location_long	DECIMAL(7,4)	NULL,
+=======
+    last_known_location_long	DECIMAL(7,4)	NULL,
+>>>>>>> master
     last_location_update		DATETIME		NULL,
     hashed_password			VARCHAR(250)	NOT NULL
 =======
