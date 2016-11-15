@@ -36,8 +36,10 @@ function getUser(userId, callback) {
 
     // Get database connection and run query
 	db.get().query(query, userId, function(err, rows) {
-        if (err) throw err;
-
+        if (err) {
+            callback({ "success": false, "message": "something went wrong in the db." });
+        }
+        
 		callback(rows);
 	});
 

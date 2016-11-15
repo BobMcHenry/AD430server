@@ -36,7 +36,7 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
 	db.connect(db.MODE_DEVELOPMENT);
 
 	//Check your input is valid with the DB
-	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 1', interpreterUserId, function(err,rows){
+	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 1', interpreterUserId, function(err, rows){
 		//Check interpreterUserId user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given interpreterUserId cannot be found or is not a interpreter user." });
@@ -49,8 +49,8 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
 					callback({ "success": false, "message": "Given ConvoId cannot be found or did not belong to the given interpreter user." });
 					return;
 				} else {
-					db.get().query('UPDATE convo SET last_updated_hoh = NOW() WHERE convo_id = ?', ConvoId, function(err,res){
-						if(err) {
+					db.get().query('UPDATE convo SET last_updated_hoh = NOW() WHERE convo_id = ?', ConvoId, function(err, res){
+						if (err) {
 							callback({ "success": false, "message": "something went wrong in the db." });
 						}
 						callback({ "success": true, "convo_id": ConvoId });
