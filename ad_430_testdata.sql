@@ -4,14 +4,11 @@ INSERT INTO user(
 	
     skype_username, 
     full_name, 
-    
-    
-    
     is_interpreter,
     ok_to_chat, 
     ok_to_show_location,
     last_known_location_lat, 
-    last_knonw_location_long,
+    last_known_location_long,
     hashed_password
 )VALUES
  ("skypeUN01", "Seattle PersonA", 0, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
