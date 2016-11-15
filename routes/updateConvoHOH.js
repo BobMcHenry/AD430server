@@ -51,7 +51,7 @@ function updateConvoHOH(hohUserId, ConvoId, callback) {
 					return;
 				} else {
 					db.get().query('UPDATE convo SET last_updated_hoh = NOW() WHERE convo_id = ?', ConvoId, function(err,res){
-						if(err) {
+						if (err) {
 							callback({ "success": false, "message": "something went wrong in the db." });
 						}
 						callback({ "success": true, "convo_id": ConvoId });

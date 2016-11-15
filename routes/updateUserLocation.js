@@ -40,7 +40,7 @@ function updateUserLocation(userId, userLocLat, userLocLong, callback) {
 	query = `SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?`;
 
 	// Get database connection and run query
-	db.get().query(query, userId, function(err,rows) {
+	db.get().query(query, userId, function(err, rows) {
 		if (rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 			return;
@@ -50,8 +50,10 @@ function updateUserLocation(userId, userLocLat, userLocLong, callback) {
 					WHERE user_id = ?`;
 
 			// Get database connection and run query
-			db.get().query(query, [userLocLat, userLocLong, userId], function(err,res) {
-				if(err) throw err;
+			db.get().query(query, [userLocLat, userLocLong, userId], function(err, res) {
+				if (err) {
+					callback({ "success": false, "message": "something went wrong in the db." });
+				}
 
 				callback({ "success": true, "userId": userId });
 				return;

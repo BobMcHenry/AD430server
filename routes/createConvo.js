@@ -37,17 +37,17 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 	db.connect(db.MODE_DEVELOPMENT);
 
 	//Check your input is valid with the DB
-	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 0', hohUserId, function(err,rows){
+	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 0', hohUserId, function(err, rows){
 
 		//Check Hoh user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given hohUserId cannot be found or is not a hoh user." });
 			return;
 		} else {
-			db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 1', interpreterUserId, function(err,rows){
+			db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 1', interpreterUserId, function(err, rows){
 
 				//Check interpreter user id is valid
-				if(rows[0].isGood == 0) {
+				if (rows[0].isGood == 0) {
 					callback({ "success": false, "message": "Given interpreterUserId cannot be found or is not a interpreter user." });
 					return;
 				} else {
@@ -59,7 +59,11 @@ function createConvo(hohUserId, interpreterUserId, callback) {
     						last_updated_hoh: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
     						last_updated_interpreter: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
 						};
-					db.get().query('INSERT INTO convo SET ?', convo, function(err,res) {
+					db.get().query('INSERT INTO convo SET ?', convo, function(err, res) {
+						if (err) {
+							callback({ "success": false, "message": "something went wrong in the db." });
+						}
+
 						callback({ "success": true, "convo_id": res.insertId });
 						return;
 					});
