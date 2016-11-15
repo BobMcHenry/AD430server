@@ -24,3 +24,5 @@ Example: http://54.69.18.19/getPassword?userId=2
 
 setPassword sets the current password for a particular user. It accepts a two arguments, the ID of the user (userId), and the new password (newPassword)
 Example: http://54.69.18.19/getPassword?userId=2&newPassword=hashedpasswordtemp
+
+setInterpreterStatus switches a user from a HOH user to an interpreter and back again. It accepts two arguments,the ID of the user (userId), and the status of the user (status). Set status to 1 if the user is an interpreter and 0 if the user is not an interpreter.
