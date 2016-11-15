@@ -12,7 +12,7 @@ CREATE TABLE user
     ok_to_chat					BIT				NOT NULL,
     ok_to_show_location			BIT				NOT NULL,
     last_known_location_lat		DECIMAL(7,4)	NULL,
-    last_knonw_location_long	DECIMAL(7,4)	NULL,
+    last_known_location_long	DECIMAL(7,4)	NULL,
     last_location_update		DATETIME		NULL,
     hashed_password			VARCHAR(250)	NOT NULL
 );
