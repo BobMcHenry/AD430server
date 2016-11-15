@@ -5,25 +5,16 @@ use ad430_db;
 CREATE TABLE user
 (
 	user_id 					INT 			UNSIGNED		PRIMARY KEY 	AUTO_INCREMENT,
-    skype_username	 			VARCHAR(100)	UNIQUE 			NOT NULL,
-	full_name					VARCHAR(250) 	NOT NULL,
+    skype_username	 			VARCHAR(100)	NULL,
+	email						VARCHAR(250) 	NULL,
 	last_active_time			DATETIME		NULL,
     is_interpreter				BIT				NOT NULL,
     ok_to_chat					BIT				NOT NULL,
     ok_to_show_location			BIT				NOT NULL,
     last_known_location_lat		DECIMAL(7,4)	NULL,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    last_knonw_location_long	DECIMAL(7,4)	NULL,
-=======
     last_known_location_long	DECIMAL(7,4)	NULL,
->>>>>>> master
     last_location_update		DATETIME		NULL,
-    hashed_password			VARCHAR(250)	NOT NULL
-=======
-    last_known_location_long	DECIMAL(7,4)	NULL,
-    last_location_update		DATETIME		NULL
->>>>>>> origin/AA_SetPrefs
+    hashed_password				VARCHAR(250)	NOT NULL
 );
 CREATE INDEX ind_user_skype_username ON user(skype_username);
 
@@ -77,10 +68,10 @@ CREATE TABLE convo_rating
 		REFERENCES convo (convo_id)
 );
 
-CREATE VIEW intrepreter_ratings AS
-SELECT u.user_id,
-	AVG(cr.friendliness) AS avg_friendliness,
-    AVG(cr.asl_skill) AS avg_asl_skill,
+CREATE VIEW intrepreter_ratings AS  
+SELECT u.user_id, 
+	AVG(cr.friendliness) AS avg_friendliness, 
+    AVG(cr.asl_skill) AS avg_asl_skill, 
     AVG(cr.translate_speed) AS avg_translate_speed,
     SUM(ISNULL(ur.blocking_user_id)) as total_complaint_count,
     SUM(was_reported) as total_report_count
@@ -93,3 +84,6 @@ LEFT JOIN user_report ur
 ON ur.blocking_user_id = u.user_id
 WHERE u.is_interpreter
 GROUP BY u.user_id;
+
+
+
