@@ -1,8 +1,8 @@
 USE ad430_db;
 
 INSERT INTO user(
-	
-    skype_username, 
+    skype_username,
+	full_name,
     email,
     is_interpreter,
     ok_to_chat, 
@@ -11,20 +11,20 @@ INSERT INTO user(
     last_known_location_long,
     hashed_password
 )VALUES
- ("skypeUN01", "fakeemail01@gmail.com", 0, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
- ("skypeUN02", "fakeemail02@gmail.com", 0, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
- ("skypeUN03", "fakeemail03@gmail.com", 1, 0, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
- ("skypeUN04", "fakeemail04@gmail.com", 1, 0, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN01", "Casey D Riggin", "fakeemail01@gmail.com", 0, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN02", NULL, "fakeemail02@gmail.com", 0, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN03", "Lizzy Sizer", "fakeemail03@gmail.com", 1, 0, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN04", NULL, "fakeemail04@gmail.com", 1, 0, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
  
- ("skypeUN05", "fakeemail05@gmail.com", 0, 1, 0, 47.2528, -122.4442, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
- ("skypeUN06", "fakeemail06@gmail.com", 0, 1, 0, 47.2528, -122.4442, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
- ("skypeUN07", "fakeemail07@gmail.com", 1, 0, 0, 47.2528, -122.4442, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
- ("skypeUN08", "fakeemail08@gmail.com", 1, 0, 0, 47.2528, -122.4442, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN05", "Maria Alburta", "fakeemail05@gmail.com", 0, 1, 0, 47.2528, -122.4442, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN06", "Douglas Riggin", "fakeemail06@gmail.com", 0, 1, 0, 47.2528, -122.4442, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN07", NULL, "fakeemail07@gmail.com", 1, 0, 0, 47.2528, -122.4442, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN08", NULL,"fakeemail08@gmail.com", 1, 0, 0, 47.2528, -122.4442, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
  
- ("skypeUN09", "fakeemail09@gmail.com", 0, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
- ("skypeUN10", "fakeemail10@gmail.com", 0, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
- ("skypeUN11", "fakeemail11@gmail.com", 1, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
- ("skypeUN12", "fakeemail12@gmail.com", 1, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash")
+ ("skypeUN09", NULL, "fakeemail09@gmail.com", 0, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN10", NULL, "fakeemail10@gmail.com", 0, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN11", NULL, "fakeemail11@gmail.com", 1, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash"),
+ ("skypeUN12", "Fake Full Name", "fakeemail12@gmail.com", 1, 1, 1, 47.6080, -122.3351, "invalidpasswordhashinvalidpasswordhashinvalidpasswordhashinvalidpasswordhash")
 ;
 
 INSERT INTO user_report(

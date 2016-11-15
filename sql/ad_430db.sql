@@ -6,7 +6,8 @@ CREATE TABLE user
 (
 	user_id 					INT 			UNSIGNED		PRIMARY KEY 	AUTO_INCREMENT,
     skype_username	 			VARCHAR(100)	NULL,
-	email						VARCHAR(250) 	NULL,
+	full_name					VARCHAR(250)	NULL,
+	email						VARCHAR(250) 	UNIQUE			NOT NULL,
 	last_active_time			DATETIME		NULL,
     is_interpreter				BIT				NOT NULL,
     ok_to_chat					BIT				NOT NULL,
