@@ -24,7 +24,7 @@ app.use('/updateConvoHOH', require('./routes/updateConvoHOH'));
 app.use('/updateConvoInterpreter', require('./routes/updateConvoInterpreter'));
 
 // Listen for requests
-var port = 8081;
+var port = 80;
 app.listen(port, function() {
   console.log("Express server listening on port " + port);
 });
