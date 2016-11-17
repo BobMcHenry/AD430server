@@ -34,5 +34,8 @@ Example: http://54.69.18.19/updateConvoHOH?hohUserId=1&ConvoId=9
 updateConvoInterpreter: returns data about the itepreter conversations. It accepts two arguments, interpreterUserId and ConvoId.  
 Example: http://54.69.18.19/updateConvoInterpreter?interpreterUserId=11&ConvoId=9
 
+updateUserLastActive: Updates the last active time for a user to NOW. Accepts one argument, the id of the user (userId)  
+Example: http://54.69.18.19/updateUserLastActive?userId=1
+
 updateUserLocation: Update the user location (lat, long) and update time for the given id  
 Example: http://54.69.18.19/updateUserLocation?userId=1&userLocLat=69&userLocLong=96
