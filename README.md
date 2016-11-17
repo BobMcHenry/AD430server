@@ -33,3 +33,7 @@ Example: http://54.69.18.19/updateConvoInterpreter?interpreterUserId=11&ConvoId=
 
 updateUserLocation: Update the user location (lat, long) and update time for the given id
 Example: http://54.69.18.19/updateUserLocation?userId=1&userLocLat=69&userLocLong=96
+<<<<<<< HEAD
+=======
+
+>>>>>>> ea6a2c6bb352dd172eedb21fd6c2347294c85628
