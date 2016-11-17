@@ -17,6 +17,7 @@ app.use('/updateUserLocation', require('./routes/updateUserLocation'));
 app.use('/setInterpreterStatus', require('./routes/setInterpreterStatus'));
 app.use('/getPassword', require('./routes/getPassword'));
 app.use('/setPassword', require('./routes/setPassword'));
+app.use('/setSkypeName', require('./routes/setSkypeName'));
 
 // Convo related
 app.use('/getConvos', require('./routes/getConvos'));

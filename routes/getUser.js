@@ -39,7 +39,7 @@ function getUser(userId, callback) {
         if (err) {
             callback({ "success": false, "message": "something went wrong in the db." });
         }
-        
+
 		callback(rows);
 	});
 

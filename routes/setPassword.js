@@ -26,16 +26,16 @@ function setPassword(userId, newPassword, callback) {
 		callback({ "success": false, "message": "userId was not supplied, but is required" });
 		return;
 	}
-		
+
 	if(newPassword == undefined)
 	{
 		callback({ "success": false, "message": "newPassword was not supplied, but is required" });
 		return;
 	}
-		
+
 	//Get and start SQL Connection
 	 db.connect(db.MODE_DEVELOPMENT);
-	 
+
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?',userId ,function(err,rows){
 
