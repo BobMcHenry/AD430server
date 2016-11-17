@@ -23,7 +23,10 @@ setInterpreterStatus switches a user from a HOH user to an interpreter and back 
 Example:
 
 setPassword: sets the current password for a particular user. It accepts a two arguments, the ID of the user (userId), and the new password   (newPassword)
-Example: http://54.69.18.19/getPassword?userId=2&newPassword=hashedpasswordtemp
+Example: http://54.69.18.19/setPassword?userId=2&newPassword=hashedpasswordtemp
+
+setSkypeName: sets the skype name for a particular user.  Acceps two arguments, the ID of the user (userId), and the new skype name (skypeName)
+Example: http://54.69.18.19/setSkypeName?userId=1&skypeName=PizzaIsFantastic88
 
 updateConvoHOH: gets data about the conversations. It accepts two arguments, the ID of the hard-of-hearing user and the ID of the conversation.
 Example: http://54.69.18.19/updateConvoHOH?hohUserId=1&ConvoId=9
