@@ -19,6 +19,10 @@ app.use('/getPassword', require('./routes/getPassword'));
 app.use('/setPassword', require('./routes/setPassword'));
 app.use('/setSkypeName', require('./routes/setSkypeName'));
 app.use('/updateUserLastActive', require('./routes/updateUserLastActive'));
+app.use('/getVideoStatus', require('./routes/getVideoStatus'));
+app.use('/getLocationStatus', require('./routes/getLocationStatus'));
+app.use('/setLocationStatus', require('./routes/setLocationStatus'));
+
 
 // Convo related
 app.use('/getConvos', require('./routes/getConvos'));
