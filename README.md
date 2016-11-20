@@ -33,3 +33,19 @@ Example: http://54.69.18.19/updateConvoInterpreter?interpreterUserId=11&ConvoId=
 
 updateUserLocation: Update the user location (lat, long) and update time for the given id
 Example: http://54.69.18.19/updateUserLocation?userId=1&userLocLat=69&userLocLong=96
+
+setVideoStatus - sets the video status of an interpreter. this flags an interpreter as able to receive video requests or not.
+Example: http://54.69.18.19/setVideoStatus?userId=1&status=0
+JSON:    {"success":true,"ok_to_chat":"0"}
+
+getVideoStatus - returns an interpreter's video status
+Example: http://54.69.18.19/getVideoStatus?userId=1
+JSON:    [{"ok_to_chat":{"type":"Buffer","data":[0]}}]
+
+setLocationStatus - sets an interpreters locations status. values and enabled/disabled
+Example: http://54.69.18.19/setLocationStatus?userId=1&status=1
+JSON:    {"success":true,"ok_to_show_location":"1"}
+
+getLocationStatus - gets an interpreters locations status.
+Example: http://54.69.18.19/getLocationStatus?userId=1
+JSON:    [{"ok_to_show_location":{"type":"Buffer","data":[1]}}]
