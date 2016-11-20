@@ -11,6 +11,7 @@ app.use(express.static(__dirname + '/public'));
 
 // Routes
 // User related
+app.use('/createUser', require('./routes/createUser'));
 app.use('/getUser', require('./routes/getUser'));
 app.use('/getUserLocation', require('./routes/getUserLocation'));
 app.use('/updateUserLocation', require('./routes/updateUserLocation'));

@@ -2,6 +2,9 @@
 There are several different requests which may be made of the server to return json data.
 
 <<<<<<< HEAD
+createUser: Creates a user with the given args. It accepts three args, the user email, if they are an Interpreter and the hashed Password.
+Example: http://54.69.18.19/createUser?userEmail=casessy.riggisn@gmail.coms&isInterpreter=1&hashedPassword=testHASH
+
 createConvo: is used to make a new record in the DB for a conversation. It accepts two arguments, the ID of the hard-of-hearing user (hohUserId), and the ID of the interpreter(interpreterUserId).  
 Example: http://54.69.18.19/createConvo?hohUserId=1&interpreterUserId=5
 
@@ -11,8 +14,8 @@ Example: http://54.69.18.19/endConvo?ConvoId=9
 getConvos: returns a list of all of the conversation records.  
 Example: http://54.69.18.19/getConvos
 
-getPassword: gets the current password for a particular user. It accepts a single argument, the ID of the user (userId).  
-Example: http://54.69.18.19/getPassword?userId=2
+getPassword: gets the current password for a particular user. Also returns the user id. It accepts a single argument, the email of the user. 
+Example: http://54.69.18.19/getPassword?userEmail=casey.riggin@gmail.com
 
 getUser: returns the data about a particular user. It accepts a single argument, the ID of the user (userId).  
 Example: http://54.69.18.19/getUser?userId=2
