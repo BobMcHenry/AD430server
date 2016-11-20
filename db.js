@@ -19,7 +19,7 @@ exports.connect = function(mode) {
         host: 'localhost',
         user: 'root',
         // password: 'root',
-        password: '123e123e',
+        password: 'root',
         database: mode === exports.MODE_PRODUCTION ? PRODUCTION_DB : DEVELOPMENT_DB,
 		// socketPath: '/var/run/mysqld/mysqld.sock'
     });

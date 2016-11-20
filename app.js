@@ -20,6 +20,11 @@ app.use('/setPassword', require('./routes/setPassword'));
 app.use('/setLocStatus', require('./routes/setLocStatus'));
 app.use('/setSkypeName', require('./routes/setSkypeName'));
 app.use('/updateUserLastActive', require('./routes/updateUserLastActive'));
+app.use('/getVideoStatus', require('./routes/getVideoStatus'));
+app.use('/getLocationStatus', require('./routes/getLocationStatus'));
+app.use('/setLocationStatus', require('./routes/setLocationStatus'));
+app.use('/setVideoStatus', require('./routes/setVideoStatus'));
+
 
 // Convo related
 app.use('/getConvos', require('./routes/getConvos'));
