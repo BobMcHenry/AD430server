@@ -22,6 +22,7 @@ app.use('/updateUserLastActive', require('./routes/updateUserLastActive'));
 app.use('/getVideoStatus', require('./routes/getVideoStatus'));
 app.use('/getLocationStatus', require('./routes/getLocationStatus'));
 app.use('/setLocationStatus', require('./routes/setLocationStatus'));
+app.use('/setVideoStatus', require('./routes/setVideoStatus'));
 
 
 // Convo related
