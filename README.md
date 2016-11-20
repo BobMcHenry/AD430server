@@ -21,7 +21,7 @@ getUserLocation: Get the user location for the given id
 Example: http://54.69.18.19/getUserLocation?userId=1
 
 setInterpreterStatus switches a user from a HOH user to an interpreter and back again. It accepts two arguments,the ID of the user (userId), and the status of the user (status). Set status to 1 if the user is an interpreter and 0 if the user is not an interpreter.  
-Example:
+Example:http://54.69.18.19/setInterpreterStatus?userId=2&status=0
 
 setPassword: sets the current password for a particular user. It accepts a two arguments, the ID of the user (userId), and the new password   (newPassword)  
 Example: http://54.69.18.19/setPassword?userId=2&newPassword=hashedpasswordtemp
@@ -40,6 +40,7 @@ Example: http://54.69.18.19/updateUserLastActive?userId=1
 
 updateUserLocation: Update the user location (lat, long) and update time for the given id  
 Example: http://54.69.18.19/updateUserLocation?userId=1&userLocLat=69&userLocLong=96
+<<<<<<< HEAD
 =======
 createConvo: is used to make a new record in the DB for a conversation. It accepts two arguments, the ID of the hard-of-hearing user (hohUserId), and the ID of the interpreter(interpreterUserId).
 Example: http://54.69.18.19/createConvo?hohUserId=1&interpreterUserId=5
@@ -75,3 +76,8 @@ updateUserLocation: Update the user location (lat, long) and update time for the
 Example: http://54.69.18.19/updateUserLocation?userId=1&userLocLat=69&userLocLong=96
 
 >>>>>>> master
+=======
+
+setLocStatus: Changes the setting for the user to share their location with others. Accepts two arguments, the ID of the user (userId), and the location sharing status (status). Put 0 into the status to hid the user's location and 1 to share it with other users.
+Example: http://54.69.18.19/setLocStatus?userId=1&status=1
+>>>>>>> unstable

@@ -17,6 +17,7 @@ app.use('/updateUserLocation', require('./routes/updateUserLocation'));
 app.use('/setInterpreterStatus', require('./routes/setInterpreterStatus'));
 app.use('/getPassword', require('./routes/getPassword'));
 app.use('/setPassword', require('./routes/setPassword'));
+app.use('/setLocStatus', require('./routes/setLocStatus'));
 app.use('/setSkypeName', require('./routes/setSkypeName'));
 app.use('/updateUserLastActive', require('./routes/updateUserLastActive'));
 app.use('/getVideoStatus', require('./routes/getVideoStatus'));
