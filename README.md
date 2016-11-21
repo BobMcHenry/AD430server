@@ -20,7 +20,7 @@ getPassword: gets the current password for a particular user. Also returns the u
 Example: http://54.69.18.19/getPassword?userEmail=casey.riggin@gmail.com
 
 getPhysicalInterpreters: Gets a list of available physical interpreters. Takes three arguments, userId, userLat, userLong. *note: Range is not implemented serve side, all available physical users returned. 
-Example: http://localhost:8081/getphysicalinterpreters?userId=1&userLat=40.3&userLong=-21.4
+Example: http://54.69.18.19/getphysicalinterpreters?userId=1&userLat=40.3&userLong=-21.4
 
 getUser: returns the data about a particular user. It accepts a single argument, the ID of the user (userId).  
 Example: http://54.69.18.19/getUser?userId=2
