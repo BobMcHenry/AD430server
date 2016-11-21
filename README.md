@@ -23,6 +23,9 @@ Example: http://54.69.18.19/getUser?userId=2
 getUserLocation: Get the user location for the given id  
 Example: http://54.69.18.19/getUserLocation?userId=1
 
+getVideoInterpreters: Get a list of available video interpreters names and Skype IDs. Pass requesting user id. 
+Example: http://54.69.18.19/getVideoInterpreters?userId=1
+
 setInterpreterStatus switches a user from a HOH user to an interpreter and back again. It accepts two arguments,the ID of the user (userId), and the status of the user (status). Set status to 1 if the user is an interpreter and 0 if the user is not an interpreter.  
 Example:http://54.69.18.19/setInterpreterStatus?userId=2&status=0
 
