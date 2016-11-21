@@ -1,13 +1,16 @@
 
 // Module dependencies
 var express = require('express'); // Required for arg parsing
+var morgan = require('morgan'); // Logging middleware
+var fs = require('fs'); // Filestream lib for logging
 
 var app = express();
 
-// Configuration
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-app.use(express.static(__dirname + '/public'));
+// create a write stream (in append mode) and set to logging middleware
+// Logs will be in the style of apache access logs.
+var accessLogStream = fs.createWriteStream('./access.log', {flags: 'a'})
+app.use(morgan('combined', {stream:accessLogStream}));
+
 
 // Routes
 // User related
