@@ -26,6 +26,10 @@ app.use('/getLocationStatus', require('./routes/getLocationStatus'));
 app.use('/setLocationStatus', require('./routes/setLocationStatus'));
 app.use('/setVideoStatus', require('./routes/setVideoStatus'));
 
+// Bob - Works in progress
+//app.use('/adminDashboard', require('./routes/adminDashboard'));
+app.use('/getVideoInterpreters',require('./routes/getVideoInterpreters'));
+//app.use('/getVideoInterpreters',require('./routes/getVideoInterpreters'));
 
 // Convo related
 app.use('/getConvos', require('./routes/getConvos'));
