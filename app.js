@@ -28,6 +28,7 @@ app.use('/getVideoStatus', require('./routes/getVideoStatus'));
 app.use('/getLocationStatus', require('./routes/getLocationStatus'));
 app.use('/setLocationStatus', require('./routes/setLocationStatus'));
 app.use('/setVideoStatus', require('./routes/setVideoStatus'));
+app.use('/setUserName', require('./routes/setUserName'));
 
 // Bob - Works in progress
 app.use('/adminDashboard', require('./routes/adminDashboard'));
