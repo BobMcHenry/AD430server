@@ -30,7 +30,8 @@ app.use('/setLocationStatus', require('./routes/setLocationStatus'));
 app.use('/setVideoStatus', require('./routes/setVideoStatus'));
 
 // Bob - Works in progress
-//app.use('/adminDashboard', require('./routes/adminDashboard'));
+app.use('/adminDashboard', require('./routes/adminDashboard'));
+
 app.use('/getVideoInterpreters',require('./routes/getVideoInterpreters'));
 app.use('/getPhysicalInterpreters',require('./routes/getPhysicalInterpreters'));
 
@@ -48,3 +49,4 @@ app.listen(port, function() {
 });
 
 module.exports = app;
+console.log("did I get here?");
