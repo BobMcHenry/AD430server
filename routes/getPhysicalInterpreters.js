@@ -27,7 +27,10 @@ function getPhysicalInterpreters(userId, userLat, userLong, callback) {
 		return;
 	}
 	if (userLat == undefined || userLong == undefined) {
-		callback({ "success": false, "message": "userLocLat and/or userLocLong not supplied, but required." });
+		callback({
+		"success": false, "message": "userLocLat and/or userLocLong not supplied, but required." 
+		});
+	return;
 	}
 
     // Connect to the database
