@@ -29,7 +29,7 @@ app.use('/setVideoStatus', require('./routes/setVideoStatus'));
 // Bob - Works in progress
 //app.use('/adminDashboard', require('./routes/adminDashboard'));
 app.use('/getVideoInterpreters',require('./routes/getVideoInterpreters'));
-//app.use('/getVideoInterpreters',require('./routes/getVideoInterpreters'));
+app.use('/getPhysicalInterpreters',require('./routes/getPhysicalInterpreters'));
 
 // Convo related
 app.use('/getConvos', require('./routes/getConvos'));
