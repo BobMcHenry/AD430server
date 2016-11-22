@@ -13,40 +13,46 @@ app.use(morgan('combined', {stream:accessLogStream}));
 
 
 // Routes
-// User related
-app.use('/createUser', require('./routes/createUser'));
-app.use('/getUser', require('./routes/getUser'));
-app.use('/getUserLocation', require('./routes/getUserLocation'));
-app.use('/updateUserLocation', require('./routes/updateUserLocation'));
-app.use('/setInterpreterStatus', require('./routes/setInterpreterStatus'));
-app.use('/getPassword', require('./routes/getPassword'));
-app.use('/setPassword', require('./routes/setPassword'));
-app.use('/setSkypeName', require('./routes/setSkypeName'));
-app.use('/updateUserLastActive', require('./routes/updateUserLastActive'));
-app.use('/getVideoStatus', require('./routes/getVideoStatus'));
-app.use('/getLocationStatus', require('./routes/getLocationStatus'));
-app.use('/setLocationStatus', require('./routes/setLocationStatus'));
-app.use('/setVideoStatus', require('./routes/setVideoStatus'));
-app.use('/setUserName', require('./routes/setUserName'));
-
 // Bob - Works in progress
 app.use('/adminDashboard', require('./routes/adminDashboard'));
 
-app.use('/getVideoInterpreters',require('./routes/getVideoInterpreters'));
-app.use('/getPhysicalInterpreters',require('./routes/getPhysicalInterpreters'));
+app.use('/getVideoInterpreters', require('./routes/getVideoInterpreters'));
+app.use('/getPhysicalInterpreters', require('./routes/getPhysicalInterpreters'));
+
+// User related
+app.use('/createUser', require('./routes/createUser'));
+app.use('/getUser', require('./routes/getUser'));
+app.use('/setUserName', require('./routes/setUserName'));
+app.use('/setSkypeName', require('./routes/setSkypeName'));
+
+app.use('/getPassword', require('./routes/getPassword'));
+app.use('/setPassword', require('./routes/setPassword'));
+
+app.use('/getUserLocation', require('./routes/getUserLocation'));
+app.use('/updateUserLocation', require('./routes/updateUserLocation'));
+
+app.use('/getLocationStatus', require('./routes/getLocationStatus'));
+app.use('/setLocationStatus', require('./routes/setLocationStatus'));
+
+app.use('/getVideoStatus', require('./routes/getVideoStatus'));
+app.use('/setVideoStatus', require('./routes/setVideoStatus'));
+
+app.use('/updateUserLastActive', require('./routes/updateUserLastActive'));
+app.use('/setInterpreterStatus', require('./routes/setInterpreterStatus'));
 
 // Convo related
-app.use('/getConvos', require('./routes/getConvos'));
 app.use('/createConvo', require('./routes/createConvo'));
+app.use('/getConvos', require('./routes/getConvos'));
 app.use('/endConvo', require('./routes/endConvo'));
+
 app.use('/updateConvoHOH', require('./routes/updateConvoHOH'));
 app.use('/updateConvoInterpreter', require('./routes/updateConvoInterpreter'));
 
 // Listen for requests
 var port = 8081;
 app.listen(port, function() {
-  console.log("Express server listening on port " + port);
+    // Make sure you see this
+    console.log("Express server listening on port " + port);
 });
 
 module.exports = app;
-console.log("did I get here?");
