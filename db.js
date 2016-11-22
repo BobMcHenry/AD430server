@@ -31,4 +31,4 @@ exports.connect = function(mode) {
 exports.get = function() {
   return state.pool;
 }
-Contact GitHub API Training Shop Blog About
+
