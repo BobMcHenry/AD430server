@@ -1,16 +1,13 @@
 # AD430server
 There are several different requests which may be made of the server to return json data.
 
-createUser: Creates a user with the given args. It accepts three args, the user email, if they are an Interpreter and the hashed Password.
-Example: http://54.69.18.19:8081/createUser?userEmail=casessy.riggisn@gmail.coms&isInterpreter=1&hashedPassword=testHASH
-
 createConvo: is used to make a new record in the DB for a conversation. It accepts two arguments, the ID of the hard-of-hearing user (hohUserId), and the ID of the interpreter(interpreterUserId).  
 Example: http://54.69.18.19:8081/createConvo?hohUserId=1&interpreterUserId=4
 
-endConvo: sets the end of the conversation record. It accepts a single argument, the ID of the conversation (ConvoId).  
-Example: http://54.69.18.19:8081/endConvo?ConvoId=9
+createUser: Creates a user with the given args. It accepts three args, the user email, if they are an Interpreter and the hashed Password.
+Example: http://54.69.18.19:8081/createUser?userEmail=casessy.riggisn@gmail.coms&isInterpreter=1&hashedPassword=testHASH
 
-endConvo: sets the end of the conversation record. It accepts a single argument, the ID of the conversation (ConvoId).
+endConvo: sets the end of the conversation record. It accepts a single argument, the ID of the conversation (ConvoId).  
 Example: http://54.69.18.19:8081/endConvo?ConvoId=9
 
 getConvos: returns a list of all of the conversation records.  
@@ -21,6 +18,9 @@ Example: http://54.69.18.19:8081/getPassword?userEmail=casey.riggin@gmail.com
 
 getPhysicalInterpreters: Gets a list of available physical interpreters. Takes three arguments, userId, userLat, userLong. *note: Range is not implemented serve side, all available physical users returned. 
 Example: http://54.69.18.19:8081/getphysicalinterpreters?userId=1&userLat=40.3&userLong=-21.4
+
+getSkypeName: gets the skype name for a particular user.  Acceps one argument, the ID of the user (userId)  
+Example: http://54.69.18.19:8081/getSkypeName?userId=1
 
 getUser: returns the data about a particular user. It accepts a single argument, the ID of the user (userId).  
 Example: http://54.69.18.19:8081/getUser?userId=2
@@ -43,6 +43,9 @@ Example: http://54.69.18.19:8081/setPassword?userId=2&newPassword=hashedpassword
 setSkypeName: sets the skype name for a particular user.  Acceps two arguments, the ID of the user (userId), and the new skype name (skypeName)  
 Example: http://54.69.18.19:8081/setSkypeName?userId=1&skypeName=PizzaIsFantastic88
 
+setUserName: Sets the user name of the user. Takes two arguments, the id of the user (userId) and the new name of the user (fullName).
+Example: http://54.69.18.19:8081/setUserName?userId=1&fullName=Name
+
 updateConvoHOH: gets data about the conversations. It accepts two arguments, the ID of the hard-of-hearing user and the ID of the conversation.  
 Example: http://54.69.18.19:8081/updateConvoHOH?hohUserId=1&ConvoId=9
 
@@ -54,6 +57,3 @@ Example: http://54.69.18.19:8081/updateUserLastActive?userId=1
 
 updateUserLocation: Update the user location (lat, long) and update time for the given id  
 Example: http://54.69.18.19:8081/updateUserLocation?userId=1&userLocLat=69&userLocLong=96
-
-setUserName: Sets the user name of the user. Takes two arguments, the id of the user (userId) and the new name of the user (fullName).
-Example: http://54.69.18.19:8081/setUserName?userId=1&fullName=Name
