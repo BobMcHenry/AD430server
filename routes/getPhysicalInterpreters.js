@@ -1,4 +1,3 @@
-
 // Module dependencies
 var express = require('express');
 
@@ -10,30 +9,37 @@ var router = express.Router();
 // Set up the route
 router.get('/', function (req, res) {
     var userId = req.query.userId;
+    var userLat = req.query.userLat;
+    var userLong = req.query.userLong;
 
-	getUser(userId, function(data) {
+	getPhysicalInterpreters(userId,userLat, userLong, function(data) {
 		res.setHeader('Content-Type', 'application/json');
 		res.json(data);
 	});
 });
 
-// Get a user with the given id
-function getUser(userId, callback) {
-	console.log("Invoked: getUser");
+function getPhysicalInterpreters(userId, userLat, userLong, callback) {
+	console.log("Invoked: getPhysicalInterpreters");
 
     // Check that input is not null
-    if (userId == undefined) {
+    if(userId == undefined) {
 		callback({ "success": false, "message": "userId not supplied, but required" });
 		return;
+	}
+	if (userLat == undefined || userLong == undefined) {
+		callback({
+		"success": false, "message": "userLocLat and/or userLocLong not supplied, but required." 
+		});
+	return;
 	}
 
     // Connect to the database
     db.connect(db.MODE_DEVELOPMENT);
     var query;
-
-    // Get all user data
-    query = `SELECT * FROM user WHERE user_id = ?`;
-
+    // # get video interpreter list
+    query = `SELECT full_name, skype_username, last_known_location_lat, last_known_location_long FROM user
+		WHERE is_interpreter = 1 AND ok_to_show_location = 1;`;
+    
     // Get database connection and run query
 	db.get().query(query, userId, function(err, rows) {
         if (err) {
@@ -43,7 +49,7 @@ function getUser(userId, callback) {
 		callback(rows);
 	});
 
-    console.log("Finished: getUser");
+    console.log("Finished: getPhysicalInterpreters");
 }
 
 module.exports = router;

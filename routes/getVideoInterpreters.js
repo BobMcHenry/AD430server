@@ -1,4 +1,3 @@
-
 // Module dependencies
 var express = require('express');
 
@@ -11,18 +10,17 @@ var router = express.Router();
 router.get('/', function (req, res) {
     var userId = req.query.userId;
 
-	getUser(userId, function(data) {
+	getVideoInterpreters(userId, function(data) {
 		res.setHeader('Content-Type', 'application/json');
 		res.json(data);
 	});
 });
 
-// Get a user with the given id
-function getUser(userId, callback) {
-	console.log("Invoked: getUser");
+function getVideoInterpreters(userId, callback) {
+	console.log("Invoked: getVideoInterpreters");
 
     // Check that input is not null
-    if (userId == undefined) {
+    if(userId == undefined) {
 		callback({ "success": false, "message": "userId not supplied, but required" });
 		return;
 	}
@@ -30,10 +28,11 @@ function getUser(userId, callback) {
     // Connect to the database
     db.connect(db.MODE_DEVELOPMENT);
     var query;
-
-    // Get all user data
-    query = `SELECT * FROM user WHERE user_id = ?`;
-
+    // # get video interpreter list
+    query = `SELECT full_name, skype_username FROM user	
+     		WHERE is_interpreter = 1 AND ok_to_chat = 1
+		ORDER BY last_active_time DESC;`;
+    
     // Get database connection and run query
 	db.get().query(query, userId, function(err, rows) {
         if (err) {
@@ -43,7 +42,7 @@ function getUser(userId, callback) {
 		callback(rows);
 	});
 
-    console.log("Finished: getUser");
+    console.log("Finished: getVideoInterpreters");
 }
 
 module.exports = router;
