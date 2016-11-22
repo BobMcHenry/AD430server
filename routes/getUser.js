@@ -22,7 +22,7 @@ function getUser(userId, callback) {
 	console.log("Invoked: getUser");
 
     // Check that input is not null
-    if(userId == undefined) {
+    if (userId == undefined) {
 		callback({ "success": false, "message": "userId not supplied, but required" });
 		return;
 	}
