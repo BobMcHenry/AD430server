@@ -77,3 +77,5 @@ Example: http://54.69.18.19/updateUserLastActive?userId=1
 updateUserLocation: Update the user location (lat, long) and update time for the given id  
 Example: http://54.69.18.19/updateUserLocation?userId=1&userLocLat=69&userLocLong=96
 
+getSkypeName: gets the skype name for a particular user. Acceps one argument, the ID of the user (userId)
+Example: http://54.69.18.19:8081/getSkypeName?userId=1
