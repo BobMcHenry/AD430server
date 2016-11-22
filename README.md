@@ -5,7 +5,7 @@ createUser: Creates a user with the given args. It accepts three args, the user 
 Example: http://54.69.18.19:8081/createUser?userEmail=casessy.riggisn@gmail.coms&isInterpreter=1&hashedPassword=testHASH
 
 createConvo: is used to make a new record in the DB for a conversation. It accepts two arguments, the ID of the hard-of-hearing user (hohUserId), and the ID of the interpreter(interpreterUserId).  
-Example: http://54.69.18.19:8081/createConvo?hohUserId=1&interpreterUserId=5
+Example: http://54.69.18.19:8081/createConvo?hohUserId=1&interpreterUserId=4
 
 endConvo: sets the end of the conversation record. It accepts a single argument, the ID of the conversation (ConvoId).  
 Example: http://54.69.18.19:8081/endConvo?ConvoId=9
