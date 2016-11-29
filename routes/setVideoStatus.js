@@ -36,18 +36,23 @@ function setInterpreterStatus(userId, status, callback) {
 
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?', userId, function(err,rows){
+		if (err) {
+			callback({ "success": false, "message": "something went wrong in the db." });
+			return;
+		}
 		//Check interpreterUserId user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 			return;
 		} else {
 				console.log("status: " + status);
-				db.get().query('UPDATE user SET ok_to_chat = ? + 0 WHERE user_id = ?', [status, userId], function(err,res){
-					if(err) {
+				db.get().query('UPDATE user SET ok_to_chat = ? WHERE user_id = ?', [status, userId], function(err,res){
+					if (err) {
 						callback({ "success": false, "message": "something went wrong in the db." });
+						return;
 					}
+
 					callback({ "success": true, "ok_to_chat": status });
-					return;
 				});
 			}
 	});

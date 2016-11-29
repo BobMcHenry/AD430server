@@ -37,8 +37,11 @@ function getUserLocation(userId, callback) {
 
 	// Get database connection and run query
 	db.get().query(query, userId, function(err, rows) {
-		if (err) throw err;
-
+		if (err) {
+			callback({ "success": false, "message": "something went wrong in the db." });
+			return;
+		}
+		//Check userId is valid
 		if (rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 			return;
@@ -50,10 +53,12 @@ function getUserLocation(userId, callback) {
 			db.get().query(query, userId, function(err, rows) {
 				if (err) {
 					callback({ "success": false, "message": "something went wrong in the db." });
+					return;
 				}
-				
-				callback(rows);
-				return;
+
+				// change ok_to_chat from 0/1 to false/true
+				rows[0].ok_to_chat = (rows[0].ok_to_chat) ? true : false;
+				callback(rows[0]);
 			});
 		}
 	});
