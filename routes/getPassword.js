@@ -23,15 +23,15 @@ function getPassword(userEmail, callback) {
 		callback({ "success": false, "message": "userEmail was not supplied, but is required" });
 		return;
 	}
-	
+
 	//Get and start SQL Connection
     db.connect(db.MODE_DEVELOPMENT);
 	userEmail = userEmail.trim();
 	userEmail = userEmail.toLowerCase();
-	
+
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE LOWER(email) = ?',userEmail ,function(err,rows){
-	
+
 		//Check Hoh user id is valid
 		if(rows[0].isGood == 0)
 		{
@@ -39,10 +39,12 @@ function getPassword(userEmail, callback) {
 			callback({ "success": false, "message": "Given userEmail cannot be found." });
 			return;
 		} else {
-			db.get().query('SELECT hashed_password, user_id FROM user WHERE LOWER(email) = ?',userEmail ,function(err,rows){
+			db.get().query('SELECT user_id, hashed_password, is_interpreter FROM user WHERE LOWER(email) = ?',userEmail ,function(err,rows){
 				if (err) throw err;
 
 				db.get().end();
+                // change is_interpreter from 0/1 to false/true
+                rows[0].is_interpreter = (rows[0].is_interpreter) ? true : false;
 				callback(rows[0]);
 			});
 		}
