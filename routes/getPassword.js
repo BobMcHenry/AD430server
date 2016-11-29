@@ -31,7 +31,11 @@ function getPassword(userEmail, callback) {
 
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE LOWER(email) = ?',userEmail ,function(err,rows){
-
+        if (err) {
+            console.log(err);
+            callback({ "success": false, "message": "something went wrong in the db." });
+            return;
+        }
 		//Check Hoh user id is valid
 		if(rows[0].isGood == 0)
 		{
@@ -40,9 +44,12 @@ function getPassword(userEmail, callback) {
 			return;
 		} else {
 			db.get().query('SELECT user_id, hashed_password, is_interpreter FROM user WHERE LOWER(email) = ?',userEmail ,function(err,rows){
-				if (err) throw err;
-
-				db.get().end();
+                if (err) {
+					console.log(err);
+					callback({ "success": false, "message": "something went wrong in the db." });
+					return;
+				}
+                
                 // change is_interpreter from 0/1 to false/true
                 rows[0].is_interpreter = (rows[0].is_interpreter) ? true : false;
 				callback(rows[0]);

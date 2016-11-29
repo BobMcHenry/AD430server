@@ -29,14 +29,16 @@ function getVideoInterpreters(userId, callback) {
     db.connect(db.MODE_DEVELOPMENT);
     var query;
     // # get video interpreter list
-    query = `SELECT full_name, skype_username FROM user	
+    query = `SELECT full_name, skype_username FROM user
      		WHERE is_interpreter = 1 AND ok_to_chat = 1
 		ORDER BY last_active_time DESC;`;
-    
+
     // Get database connection and run query
 	db.get().query(query, userId, function(err, rows) {
         if (err) {
+            console.log(err);
             callback({ "success": false, "message": "something went wrong in the db." });
+            return;
         }
 
 		callback(rows);

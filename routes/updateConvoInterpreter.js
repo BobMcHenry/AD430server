@@ -37,13 +37,22 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
 
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 1', interpreterUserId, function(err, rows){
+		if (err) {
+			console.log(err);
+			callback({ "success": false, "message": "something went wrong in the db." });
+			return;
+		}
 		//Check interpreterUserId user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given interpreterUserId cannot be found or is not a interpreter user." });
 			return;
 		} else {
 			db.get().query('SELECT COUNT(*) AS isGood FROM convo WHERE convo_id = ? AND interpreter_user_id = ?', [ConvoId, interpreterUserId] , function(err,rows){
-
+				if (err) {
+					console.log(err);
+					callback({ "success": false, "message": "something went wrong in the db." });
+					return;
+				}
 				//Check interpreter user id is valid
 				if(rows[0].isGood == 0) {
 					callback({ "success": false, "message": "Given ConvoId cannot be found or did not belong to the given interpreter user." });
@@ -51,10 +60,12 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
 				} else {
 					db.get().query('UPDATE convo SET last_updated_hoh = NOW() WHERE convo_id = ?', ConvoId, function(err, res){
 						if (err) {
+							console.log(err);
 							callback({ "success": false, "message": "something went wrong in the db." });
+							return;
 						}
+
 						callback({ "success": true, "convo_id": ConvoId });
-						return;
 					});
 				}
 			});
