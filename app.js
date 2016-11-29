@@ -11,7 +11,6 @@ var app = express();
 var accessLogStream = fs.createWriteStream('./access.log', {flags: 'a'})
 app.use(morgan('combined', {stream:accessLogStream}));
 
-
 // Routes
 // Bob - Works in progress
 app.use('/adminDashboard', require('./routes/adminDashboard'));
@@ -23,7 +22,6 @@ app.use('/getPhysicalInterpreters', require('./routes/getPhysicalInterpreters'))
 app.use('/createUser', require('./routes/createUser'));
 app.use('/getUser', require('./routes/getUser'));
 app.use('/setUserName', require('./routes/setUserName'));
-
 
 app.use('/getSkypeName', require('./routes/getSkypeName'));
 app.use('/setSkypeName', require('./routes/setSkypeName'));

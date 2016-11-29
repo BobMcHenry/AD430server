@@ -42,12 +42,12 @@ function setInterpreterStatus(userId, status, callback) {
 			return;
 		} else {
 				console.log("status: " + status);
-				db.get().query('UPDATE user SET is_interpreter = ? + 0 WHERE user_id = ?', [status, userId], function(err,res){
+				db.get().query('UPDATE user SET is_interpreter = ? WHERE user_id = ?', [status, userId], function(err,res){
 					if(err) {
 						callback({ "success": false, "message": "something went wrong in the db." });
+						return;
 					}
 					callback({ "success": true, "is_interpreter": status });
-					return;
 				});
 			}
 	});

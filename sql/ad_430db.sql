@@ -11,7 +11,7 @@ CREATE TABLE user
 	full_name					VARCHAR(250)	NULL,
 	email						VARCHAR(250) 	UNIQUE			NOT NULL,
 	last_active_time			DATETIME		NULL,
-    is_interpreter				BIT				NOT NULL,
+    is_interpreter				TINYINT(1)		NOT NULL,
     ok_to_chat					BIT				NOT NULL,
     ok_to_show_location			BIT				NOT NULL,
     last_known_location_lat		DECIMAL(7,4)	NULL,
