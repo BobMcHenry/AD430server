@@ -13,7 +13,7 @@ Example: http://54.69.18.19:8081/endConvo?ConvoId=9
 getConvos: returns a list of all of the conversation records.  
 Example: http://54.69.18.19:8081/getConvos
 
-getPassword: gets the current password for a particular user. Also returns the user id and whether or not the user is an interpreter. It accepts a single argument, the email of the user. 
+getPassword: gets the current password for a particular user. Also returns the user id and whether or not the user is an interpreter returned as true/false. It accepts a single argument, the email of the user. 
 Example: http://54.69.18.19:8081/getPassword?userEmail=casey.riggin@gmail.com
 
 getPhysicalInterpreters: Gets a list of available physical interpreters. Takes three arguments, userId, userLat, userLong. *note: Range is not implemented serve side, all available physical users returned.
