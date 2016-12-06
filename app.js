@@ -55,5 +55,3 @@ app.listen(port, function() {
     // Make sure you see this
     console.log("Express server listening on port " + port);
 });
-
-module.exports = app;

@@ -31,7 +31,11 @@ function endConvo(ConvoId, callback) {
 
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM convo WHERE convo_id = ? ', ConvoId , function(err, rows){
-
+        if (err) {
+            console.log(err);
+            callback({ "success": false, "message": "something went wrong in the db." });
+            return;
+        }
 		//Check interpreter user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given ConvoId cannot be found." });
@@ -39,11 +43,12 @@ function endConvo(ConvoId, callback) {
 		} else {
 			db.get().query('UPDATE convo SET end_time = NOW() WHERE convo_id = ?', ConvoId, function(err, res){
                 if (err) {
-                    callback({ "success": false, "message": "something went wrong in the db." });
-                }
+					console.log(err);
+					callback({ "success": false, "message": "something went wrong in the db." });
+					return;
+				}
 
 				callback({ "success": true, "convo_id": ConvoId });
-				return;
 			});
 		}
 	});

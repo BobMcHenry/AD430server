@@ -38,7 +38,11 @@ function setPassword(userId, newPassword, callback) {
 
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?',userId ,function(err,rows){
-
+        if (err) {
+            console.log(err);
+            callback({ "success": false, "message": "something went wrong in the db." });
+            return;
+        }
 		//Check Hoh user id is valid
 		if(rows[0].isGood == 0)
 		{
@@ -47,13 +51,12 @@ function setPassword(userId, newPassword, callback) {
 			return;
 		} else {
 			db.get().query('UPDATE user SET hashed_password = ? WHERE user_id = ?', [newPassword,userId], function(err,res){
-				if(err) {
+                if (err) {
+					console.log(err);
 					callback({ "success": false, "message": "something went wrong in the db." });
+					return;
 				}
-				console.log(err);
-				console.log(res);
 				callback({ "success": true, "user_id": userId });
-				return;
 			});
 		}
 	});

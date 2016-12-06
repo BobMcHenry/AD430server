@@ -39,15 +39,22 @@ function setSkypeName(userId, skypeName, callback) {
 
 	// Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?', userId, function(err, rows) {
-		// Check your userId is valid
+        if (err) {
+            console.log(err);
+            callback({ "success": false, "message": "something went wrong in the db." });
+            return;
+        }
+        // Check your userId is valid
 		if (rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 		} else {
             // Update skype_username
     		db.get().query('UPDATE user SET skype_username = ? WHERE user_id = ?', [skypeName, userId], function(err,res) {
                 if (err) {
-    				callback({ "success": false, "message": "something went wrong in the db." });
-    			}
+					console.log(err);
+					callback({ "success": false, "message": "something went wrong in the db." });
+					return;
+				}
 
     			callback({ "success": true, "user_id": userId });
     		});

@@ -27,10 +27,8 @@ function getPhysicalInterpreters(userId, userLat, userLong, callback) {
 		return;
 	}
 	if (userLat == undefined || userLong == undefined) {
-		callback({
-		"success": false, "message": "userLocLat and/or userLocLong not supplied, but required." 
-		});
-	return;
+		callback({ "success": false, "message": "userLocLat and/or userLocLong not supplied, but required." });
+	    return;
 	}
 
     // Connect to the database
@@ -39,11 +37,13 @@ function getPhysicalInterpreters(userId, userLat, userLong, callback) {
     // # get video interpreter list
     query = `SELECT full_name, skype_username, last_known_location_lat, last_known_location_long FROM user
 		WHERE is_interpreter = 1 AND ok_to_show_location = 1;`;
-    
+
     // Get database connection and run query
 	db.get().query(query, userId, function(err, rows) {
         if (err) {
+            console.log(err);
             callback({ "success": false, "message": "something went wrong in the db." });
+            return;
         }
 
 		callback(rows);

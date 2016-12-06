@@ -38,14 +38,22 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 0', hohUserId, function(err, rows){
-
+		if (err) {
+			console.log(err);
+			callback({ "success": false, "message": "something went wrong in the db." });
+			return;
+		}
 		//Check Hoh user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given hohUserId cannot be found or is not a hoh user." });
 			return;
 		} else {
 			db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 1', interpreterUserId, function(err, rows){
-
+				if (err) {
+					console.log(err);
+					callback({ "success": false, "message": "something went wrong in the db." });
+					return;
+				}
 				//Check interpreter user id is valid
 				if (rows[0].isGood == 0) {
 					callback({ "success": false, "message": "Given interpreterUserId cannot be found or is not a interpreter user." });
@@ -61,11 +69,12 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 						};
 					db.get().query('INSERT INTO convo SET ?', convo, function(err, res) {
 						if (err) {
+							console.log(err);
 							callback({ "success": false, "message": "something went wrong in the db." });
+							return;
 						}
 
 						callback({ "success": true, "convo_id": res.insertId });
-						return;
 					});
 				}
 			});

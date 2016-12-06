@@ -33,15 +33,22 @@ function getSkypeName(userId, callback) {
 
 	// Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?', userId, function(err, rows) {
-		// Check your userId is valid
+        if (err) {
+            console.log(err);
+            callback({ "success": false, "message": "something went wrong in the db." });
+            return;
+        }
+        // Check your userId is valid
 		if (rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 		} else {
             // Get skype_username
     		db.get().query('SELECT skype_username FROM user WHERE user_id = ?', userId, function(err, rows) {
                 if (err) {
-    				callback({ "success": false, "message": "something went wrong in the db." });
-    			}
+					console.log(err);
+					callback({ "success": false, "message": "something went wrong in the db." });
+					return;
+				}
 
     			callback(rows);
     		});
