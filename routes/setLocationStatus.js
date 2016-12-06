@@ -36,20 +36,27 @@ function setInterpreterStatus(userId, status, callback) {
 
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?', userId, function(err,rows){
+		if (err) {
+			console.log(err);
+			callback({ "success": false, "message": "something went wrong in the db." });
+			return;
+		}
 		//Check interpreterUserId user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 			return;
 		} else {
-				console.log("status: " + status);
-				db.get().query('UPDATE user SET ok_to_show_location = ? + 0 WHERE user_id = ?', [status, userId], function(err,res){
-					if(err) {
-						callback({ "success": false, "message": "something went wrong in the db." });
-					}
-					callback({ "success": true, "ok_to_show_location": status });
+			console.log("status: " + status);
+			db.get().query('UPDATE user SET ok_to_show_location = ? + 0 WHERE user_id = ?', [status, userId], function(err,res){
+				if (err) {
+					console.log(err);
+					callback({ "success": false, "message": "something went wrong in the db." });
 					return;
-				});
-			}
+				}
+
+				callback({ "success": true, "ok_to_show_location": status });
+			});
+		}
 	});
 
 	console.log("Finished: setLocationStatus");

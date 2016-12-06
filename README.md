@@ -13,10 +13,10 @@ Example: http://54.69.18.19:8081/endConvo?ConvoId=9
 getConvos: returns a list of all of the conversation records.  
 Example: http://54.69.18.19:8081/getConvos
 
-getPassword: gets the current password for a particular user. Also returns the user id. It accepts a single argument, the email of the user. 
+getPassword: gets the current password for a particular user. Also returns the user id and whether or not the user is an interpreter returned as true/false. It accepts a single argument, the email of the user. 
 Example: http://54.69.18.19:8081/getPassword?userEmail=casey.riggin@gmail.com
 
-getPhysicalInterpreters: Gets a list of available physical interpreters. Takes three arguments, userId, userLat, userLong. *note: Range is not implemented serve side, all available physical users returned. 
+getPhysicalInterpreters: Gets a list of available physical interpreters. Takes three arguments, userId, userLat, userLong. *note: Range is not implemented serve side, all available physical users returned.
 Example: http://54.69.18.19:8081/getphysicalinterpreters?userId=1&userLat=40.3&userLong=-21.4
 
 getSkypeName: gets the skype name for a particular user.  Acceps one argument, the ID of the user (userId)  
@@ -28,7 +28,7 @@ Example: http://54.69.18.19:8081/getUser?userId=2
 getUserLocation: Get the user location for the given id  
 Example: http://54.69.18.19:8081/getUserLocation?userId=1
 
-getVideoInterpreters: Get a list of available video interpreters names and Skype IDs. Pass requesting user id. 
+getVideoInterpreters: Get a list of available video interpreters names and Skype IDs. Pass requesting user id.
 Example: http://54.69.18.19:8081/getVideoInterpreters?userId=1
 
 setInterpreterStatus switches a user from a HOH user to an interpreter and back again. It accepts two arguments,the ID of the user (userId), and the status of the user (status). Set status to 1 if the user is an interpreter and 0 if the user is not an interpreter.  

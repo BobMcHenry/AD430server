@@ -41,6 +41,11 @@ function updateUserLocation(userId, userLocLat, userLocLong, callback) {
 
 	// Get database connection and run query
 	db.get().query(query, userId, function(err, rows) {
+		if (err) {
+			console.log(err);
+			callback({ "success": false, "message": "something went wrong in the db." });
+			return;
+		}
 		if (rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
 			return;
@@ -52,11 +57,12 @@ function updateUserLocation(userId, userLocLat, userLocLong, callback) {
 			// Get database connection and run query
 			db.get().query(query, [userLocLat, userLocLong, userId], function(err, res) {
 				if (err) {
+					console.log(err);
 					callback({ "success": false, "message": "something went wrong in the db." });
+					return;
 				}
 
 				callback({ "success": true, "userId": userId });
-				return;
 			});
 		}
 	});

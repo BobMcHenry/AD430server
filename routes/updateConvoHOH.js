@@ -38,24 +38,35 @@ function updateConvoHOH(hohUserId, ConvoId, callback) {
 
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ? AND is_interpreter = 0', hohUserId, function(err,rows){
-		//Check Hoh user id is valid
+        if (err) {
+            console.log(err);
+            callback({ "success": false, "message": "something went wrong in the db." });
+            return;
+        }
+        //Check Hoh user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given hohUserId cannot be found or is not a hoh user." });
 			return;
 		} else {
 			db.get().query('SELECT COUNT(*) AS isGood FROM convo WHERE convo_id = ? AND hoh_user_id = ?', [ConvoId, hohUserId] , function(err,rows){
-
+                if (err) {
+                    console.log(err);
+                    callback({ "success": false, "message": "something went wrong in the db." });
+                    return;
+                }
 				//Check interpreter user id is valid
 				if(rows[0].isGood == 0) {
 					callback({ "success": false, "message": "Given ConvoId cannot be found or did not belong to the given HOH user." });
 					return;
 				} else {
 					db.get().query('UPDATE convo SET last_updated_hoh = NOW() WHERE convo_id = ?', ConvoId, function(err,res){
-						if (err) {
-							callback({ "success": false, "message": "something went wrong in the db." });
-						}
+                        if (err) {
+        					console.log(err);
+        					callback({ "success": false, "message": "something went wrong in the db." });
+        					return;
+        				}
+
 						callback({ "success": true, "convo_id": ConvoId });
-						return;
 					});
 				}
 			});

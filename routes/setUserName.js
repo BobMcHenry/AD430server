@@ -37,6 +37,11 @@ function setUserName(userId, fullName, callback) {
 
 	//Check your input is valid with the DB
 	db.get().query('SELECT COUNT(*) AS isGood FROM user WHERE user_id = ?', userId, function(err,rows){
+		if (err) {
+			console.log(err);
+			callback({ "success": false, "message": "something went wrong in the db." });
+			return;
+		}
 		//Check interpreterUserId user id is valid
 		if(rows[0].isGood == 0) {
 			callback({ "success": false, "message": "Given userId cannot be found." });
@@ -44,11 +49,12 @@ function setUserName(userId, fullName, callback) {
 		} else {
 				console.log("user name: " + fullName);
 				db.get().query('UPDATE user SET full_name = ? WHERE user_id = ?', [fullName, userId], function(err,res){
-					if(err) {
+					if (err) {
+						console.log(err);
 						callback({ "success": false, "message": "something went wrong in the db." });
+						return;
 					}
 					callback({ "success": true, "full_name": fullName });
-					return;
 				});
 			}
 	});

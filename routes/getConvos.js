@@ -29,9 +29,11 @@ function getConvos(callback) {
 	// Get database connection and run query
     db.get().query(query, function(err, rows) {
 		if (err) {
+			console.log(err);
 			callback({ "success": false, "message": "something went wrong in the db." });
+			return;
 		}
-		
+
         callback(rows);
     });
 
