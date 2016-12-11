@@ -56,6 +56,7 @@ function getPhysicalInterpreters(userId, userLat, userLong, radius, callback) {
                     output[outputLength++] = row;
                 }
             }
+            console.log(output);
             callback(output); 
         }
 	});
