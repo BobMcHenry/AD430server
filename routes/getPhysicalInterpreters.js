@@ -11,8 +11,9 @@ router.get('/', function (req, res) {
     var userId = req.query.userId;
     var userLat = req.query.userLat;
     var userLong = req.query.userLong;
+    var radius = req.query.radius;
 
-	getPhysicalInterpreters(userId,userLat, userLong, function(data) {
+	getPhysicalInterpreters(userId,userLat, userLong, radius, function(data) {
 		res.setHeader('Content-Type', 'application/json');
 		res.json(data);
 	});
