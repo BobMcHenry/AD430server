@@ -49,14 +49,15 @@ function getPhysicalInterpreters(userId, userLat, userLong, radius, callback) {
         if (radius == undefined){
 		  callback(rows);
         } else {
-            var output = {};
+            var output = [];
             var outputLength = 0;
-            for (var row in rows){
-                if (haversine(userLat, userLong, row.last_known_location_lat, row.last_known_location_long) <= radius){
-                    output[outputLength++] = row;
+            for (var i = 0; i < rows.length; i++){
+                console.log(rows[i]);
+                if (haversine(userLat, userLong, rows[i].last_known_location_lat, rows[i].last_known_location_long) <= radius){
+                    output.push(rows[i]);
                 }
             }
-            console.log(output);
+            
             callback(output); 
         }
 	});
