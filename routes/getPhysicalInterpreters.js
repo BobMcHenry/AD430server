@@ -53,7 +53,9 @@ function getPhysicalInterpreters(userId, userLat, userLong, radius, callback) {
             var outputLength = 0;
             for (var i = 0; i < rows.length; i++){
                 console.log(rows[i]);
-                if (haversine(userLat, userLong, rows[i].last_known_location_lat, rows[i].last_known_location_long) <= radius){
+                var distance = haversine(userLat, userLong, rows[i].last_known_location_lat, rows[i].last_known_location_long);
+                if ( distance <= radius){
+                    rows[i].distance = distance;
                     output.push(rows[i]);
                 }
             }
