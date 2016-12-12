@@ -73,14 +73,13 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 							callback({ "success": false, "message": "something went wrong in the db." });
 							return;
 						}
-
+						db.get().end();
 						callback({ "success": true, "convo_id": res.insertId });
 					});
 				}
 			});
 		}
 	});
-	db.end();
 	console.log("Finished: createConvo");
 }
 

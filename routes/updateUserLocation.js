@@ -61,11 +61,10 @@ function updateUserLocation(userId, userLocLat, userLocLong, callback) {
 					callback({ "success": false, "message": "something went wrong in the db." });
 					return;
 				}
-
+				db.get().end();
 				callback({ "success": true, "userId": userId });
 			});
 		}
-		db.get().end();
 	});
     console.log("Finished: updateUserLocation");
 }

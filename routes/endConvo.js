@@ -47,12 +47,12 @@ function endConvo(ConvoId, callback) {
 					callback({ "success": false, "message": "something went wrong in the db." });
 					return;
 				}
-
+				db.get().end();
 				callback({ "success": true, "convo_id": ConvoId });
 			});
 		}
 	});
-	db.get().end();
+	
     console.log("Finished: endConvo");
 }
 

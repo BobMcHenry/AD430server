@@ -55,11 +55,11 @@ function setSkypeName(userId, skypeName, callback) {
 					callback({ "success": false, "message": "something went wrong in the db." });
 					return;
 				}
-
+				db.get().end();
     			callback({ "success": true, "user_id": userId });
     		});
         }
-        db.get().end();
+        
 	});
     console.log("Finished: setSkypeName");
 };

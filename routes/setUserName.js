@@ -54,10 +54,11 @@ function setUserName(userId, fullName, callback) {
 						callback({ "success": false, "message": "something went wrong in the db." });
 						return;
 					}
+					db.get().end();
 					callback({ "success": true, "full_name": fullName });
 				});
 			}
-			db.get().end();
+
 	});
 	console.log("Finished: setUserName");
 }

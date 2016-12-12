@@ -57,14 +57,14 @@ function getUserLocation(userId, callback) {
 					callback({ "success": false, "message": "something went wrong in the db." });
 					return;
 				}
-
+				db.get().end();
 				// change ok_to_chat from 0/1 to false/true
 				rows[0].ok_to_show_location = (rows[0].ok_to_show_location) ? true : false;
 				callback(rows[0]);
 			});
 		}
 	});
-	db.get().end();
+	
     console.log("Finished: getLocationStatus");
 }
 

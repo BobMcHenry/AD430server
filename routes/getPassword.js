@@ -49,13 +49,13 @@ function getPassword(userEmail, callback) {
 					callback({ "success": false, "message": "something went wrong in the db." });
 					return;
 				}
-                
+                db.get().end();
                 // change is_interpreter from 0/1 to false/true
                 rows[0].is_interpreter = (rows[0].is_interpreter) ? true : false;
 				callback(rows[0]);
 			});
 		}
-		db.get().end();
+		
 	});
 }
 module.exports = router;

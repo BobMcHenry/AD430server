@@ -57,11 +57,11 @@ function getUserLocation(userId, callback) {
 					callback({ "success": false, "message": "something went wrong in the db." });
 					return;
 				}
-
+				db.get().end();
 				callback(rows);
 			});
 		}
-		db.get().end();
+
 	});
     console.log("Finished: getUserLocation");
 }

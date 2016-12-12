@@ -53,11 +53,11 @@ function setInterpreterStatus(userId, status, callback) {
 					callback({ "success": false, "message": "something went wrong in the db." });
 					return;
 				}
-
+				db.get().end();
 				callback({ "success": true, "ok_to_show_location": status });
 			});
 		}
-		db.get().end();
+
 	});
 	console.log("Finished: setLocationStatus");
 }

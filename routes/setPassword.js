@@ -56,6 +56,7 @@ function setPassword(userId, newPassword, callback) {
 					callback({ "success": false, "message": "something went wrong in the db." });
 					return;
 				}
+				db.get().end();
 				callback({ "success": true, "user_id": userId });
 			});
 		}

@@ -59,10 +59,10 @@ function getPhysicalInterpreters(userId, userLat, userLong, radius, callback) {
                     output.push(rows[i]);
                 }
             }
-            
+            db.get().end();
             callback(output); 
         }
-        db.get().end();
+        
 	});
     console.log("Finished: getPhysicalInterpreters");
 }
