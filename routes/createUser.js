@@ -93,7 +93,9 @@ function createUser(userEmail, isInterpreter, hashedPassword, callback) {
 				callback({ "success": true, "user_id": res.insertId });
 			});
 		}
+		db.get().end();
 	});
+	
 }
 
 module.exports = router;

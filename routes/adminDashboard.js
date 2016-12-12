@@ -41,11 +41,14 @@ function adminDashboard(callback){
 		}
 		output += '</table>';
 		//console.log(output);
+		db.get().end();
 		callback(output);
 	});
+
 };
 
 module.exports = router;
+
 
 function makeTableColumnsFromKeys(dataset){
     var keys = Object.keys(dataset);

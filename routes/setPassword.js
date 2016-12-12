@@ -59,6 +59,7 @@ function setPassword(userId, newPassword, callback) {
 				callback({ "success": true, "user_id": userId });
 			});
 		}
+		db.get().end();
 	});
 };
 

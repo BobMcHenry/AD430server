@@ -55,6 +55,7 @@ function getPassword(userEmail, callback) {
 				callback(rows[0]);
 			});
 		}
+		db.get().end();
 	});
 }
 module.exports = router;

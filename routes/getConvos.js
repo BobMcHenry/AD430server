@@ -36,7 +36,7 @@ function getConvos(callback) {
 
         callback(rows);
     });
-
+	db.get().end();
 	console.log("Finished: getConvos");
 }
 

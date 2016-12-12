@@ -55,9 +55,10 @@ function setInterpreterStatus(userId, status, callback) {
 					}
 					callback({ "success": true, "is_interpreter": status });
 				});
-			}
-	});
+		}
+		db.get().end();
 
+	});
 	console.log("Finished: setInterpreterStatus");
 }
 

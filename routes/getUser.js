@@ -43,8 +43,8 @@ function getUser(userId, callback) {
         }
 
 		callback(rows);
+        db.get().end();
 	});
-
     console.log("Finished: getUser");
 }
 

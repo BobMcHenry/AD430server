@@ -61,8 +61,8 @@ function getUserLocation(userId, callback) {
 				callback(rows);
 			});
 		}
+		db.get().end();
 	});
-
     console.log("Finished: getUserLocation");
 }
 

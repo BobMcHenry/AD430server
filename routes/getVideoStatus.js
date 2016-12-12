@@ -63,8 +63,8 @@ function getUserLocation(userId, callback) {
 				callback(rows[0]);
 			});
 		}
+		db.get().end();
 	});
-
     console.log("Finished: getVideoStatus");
 }
 

@@ -80,7 +80,7 @@ function createConvo(hohUserId, interpreterUserId, callback) {
 			});
 		}
 	});
-
+	db.end();
 	console.log("Finished: createConvo");
 }
 

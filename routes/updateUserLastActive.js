@@ -52,8 +52,8 @@ function updateUserLastActive(userId, callback) {
     			callback({ "success": true, "user_id": userId });
     		});
         }
+        db.get().end();
 	});
-
 	console.log("Finished: updateUserLastActive");
 }
 

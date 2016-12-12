@@ -71,8 +71,8 @@ function updateConvoHOH(hohUserId, ConvoId, callback) {
 				}
 			});
 		}
+		db.get().end();
 	});
-
     console.log("Finished: updateConvoHOH");
 }
 

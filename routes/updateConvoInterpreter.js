@@ -70,8 +70,8 @@ function updateConvoInterpreter(interpreterUserId, ConvoId, callback) {
 				}
 			});
 		}
+		db.get().end();
 	});
-
 	console.log("Finished: updateConvoInterpreter");
 }
 

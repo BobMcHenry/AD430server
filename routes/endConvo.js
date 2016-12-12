@@ -52,7 +52,7 @@ function endConvo(ConvoId, callback) {
 			});
 		}
 	});
-
+	db.get().end();
     console.log("Finished: endConvo");
 }
 

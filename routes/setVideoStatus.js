@@ -56,9 +56,10 @@ function setInterpreterStatus(userId, status, callback) {
 
 					callback({ "success": true, "ok_to_chat": status });
 				});
-			}
-	});
+		}
+		db.get().end();
 
+	});
 	console.log("Finished: setVideoStatus");
 }
 

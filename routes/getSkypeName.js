@@ -53,8 +53,8 @@ function getSkypeName(userId, callback) {
     			callback(rows);
     		});
         }
+        db.get().end();
 	});
-
     console.log("Finished: getSkypeName");
 };
 
