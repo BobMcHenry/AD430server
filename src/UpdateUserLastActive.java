@@ -7,7 +7,7 @@ import java.net.URL;
 
 import org.junit.Test;
 
-public class GetLocationStatus {
+public class UpdateUserLastActive {
 
 	@Test
 	public void test() throws IOException {
