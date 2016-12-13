@@ -22,7 +22,7 @@ function adminDashboard(callback){
     db.connect(db.MODE_DEVELOPMENT);
     var userQuery;
     // # get user data
-    userQuery = `SELECT full_name, email, skype_username, last_known_location_lat, last_known_location_long, last_active_time, is_interpreter=1 AS is_interpreter, ok_to_chat=1 AS ok_to_chat, ok_to_show_location=1 AS ok_to_show_location FROM user `;
+    userQuery = `SELECT user_id, full_name, email, skype_username, last_known_location_lat, last_known_location_long, last_active_time, is_interpreter=1 AS is_interpreter, ok_to_chat=1 AS ok_to_chat, ok_to_show_location=1 AS ok_to_show_location FROM user `;
 
     db.get().query(userQuery, function(err, rows) {
 		if (err) {

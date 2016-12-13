@@ -44,10 +44,13 @@ function getPhysicalInterpreters(userId, userLat, userLong, radius, callback) {
         if (err) {
             console.log(err);
             callback({ "success": false, "message": "something went wrong in the db." });
+	    db.get().end();
             return;
         }
         if (radius == undefined){
 		  callback(rows);
+		  db.get().end();
+		  return;
         } else {
             var output = [];
             var outputLength = 0;
